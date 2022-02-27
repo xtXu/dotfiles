@@ -1,0 +1,178 @@
+{
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "terminal.integrated.shell.osx": "",
+    "cmake.configureOnOpen": false,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "editor.fontSize": 18,
+    "workbench.startupEditor": "none",
+    "C_Cpp.default.cppStandard": "c++14",
+    "files.associations": {
+        "*.cpp": "cpp"
+    },
+    "update.mode": "none",
+    "extensions.autoCheckUpdates": false,
+    "extensions.autoUpdate": false,
+    "files.autoSave": "afterDelay",
+
+    /*
+        setting for vim
+    */
+    "editor.lineNumbers": "relative",
+    // "editor.parameterHints.enabled": false,
+    "workbench.list.automaticKeyboardNavigation": false,
+
+    // 绑定vim前导键
+    "vim.leader": "<space>",
+    // 启用easymotion插件
+    "vim.easymotion": true,
+    // easymotion插件背景暗化    
+    "vim.easymotionDimBackground": false,
+    // easymotion插件背景框颜色
+    "vim.easymotionMarkerBackgroundColor": "#000000",
+    // 启用系统粘贴板作为vim寄存器
+    "vim.useSystemClipboard": true,
+    // 由vim接管ctrl+any的按键，而不是vscode
+    "vim.useCtrlKeys": true,
+    // 突出显示与当前搜索匹配的所有文本
+    "vim.hlsearch": true,
+    // 启用sneak插件
+    "vim.sneak": true,
+    // 普通模式下的非递归按键绑定
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before":[
+                "E"
+            ],
+            "after":[
+                "g", "T"
+            ]
+        },
+        {
+            "before":[
+                "R"
+            ],
+            "after":[
+                "g", "t"
+            ]
+        },
+        {
+            "before":[
+                "<leader>", "f"
+            ],
+            "commands":[
+                "revealInExplorer",
+            ]
+        },
+        {
+            "before":[
+                "<leader>", "h"
+            ],
+            "after":[
+                "^",
+            ]
+        },
+        {
+            "before":[
+                "<leader>", "l"
+            ],
+            "after":[
+                "$",
+            ]
+        },
+
+
+        // {
+        //     "before":[
+        //         "z",
+        //         "z"
+        //     ],
+        //     "commands":[
+        //         "editor.toggleFold"
+        //     ]
+        // },
+    ],
+    // 插入模式下的非递归按键绑定
+    "vim.insertModeKeyBindings": [
+        {
+            "before":[
+                "k", "j"
+            ],
+            "after":[
+                "<Esc>", 
+            ]
+        },
+        {
+            "before":[
+                "<C-h>",
+            ],
+            "after":[
+                "<Esc>", "h", "a"
+            ]
+        },
+        {
+            "before":[
+                "<C-j>",
+            ],
+            "after":[
+                "<Esc>", "j", "a"
+            ]
+        },
+        {
+            "before":[
+                "<C-k>",
+            ],
+            "after":[
+                "<Esc>", "k", "a"
+            ]
+        },
+        {
+            "before":[
+                "<C-l>",
+            ],
+            "after":[
+                "<Esc>", "l", "a"
+            ]
+        },
+    ],
+
+    // 命令模式下的非递归按键绑定
+    "vim.commandLineModeKeyBindingsNonRecursive": [],
+    // 可视模式下的非递归按键绑定
+    "vim.visualModeKeyBindings": [
+        {
+            "before":[
+                ">",
+            ],
+            "after":[
+                ">", "g", "v"
+            ]
+        },
+        {
+            "before":[
+                "<",
+            ],
+            "after":[
+                "<", "g", "v"
+            ]
+        },
+    ],
+    // 下面定义的按键将交由vscode进行处理，而不是vscode-vim插件
+    "vim.handleKeys": {
+        // "<C-a>": false,
+        // "<C-f>": false
+        "<C-f>": false
+    },
+      
+
+    // 进入Normal模式自动切换英文输入法
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.autoSwitchInputMethod.defaultIM": "xkb:us::eng",
+    "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/ibus engine",
+    "vim.autoSwitchInputMethod.switchIMCmd": "/usr/bin/ibus engine {im}",
+    "window.zoomLevel": 1,
+
+}
