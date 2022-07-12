@@ -5,6 +5,12 @@
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
+    "[xml]": {
+        "editor.defaultFormatter": "DotJoshJohnson.xml"
+    },
+    "files.exclude": {
+        "**/.*": true
+    },
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "editor.fontSize": 20,
@@ -16,7 +22,7 @@
     "extensions.autoUpdate": false,
     "terminal.integrated.fontFamily": "FiraCode Nerd Font ",
     "terminal.integrated.fontSize": 17,
-    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.colorTheme": "One Dark Pro",
     "workbench.layoutControl.enabled": true,
     "files.autoSave": "afterDelay",
     "update.mode": "manual",
@@ -47,7 +53,7 @@
         "--clang-tidy-checks=bugprone-*, clang-analyzer-*, google-*, modernize-*, performance-*, portability-*, readability-*, -bugprone-too-small-loop-variable, -clang-analyzer-cplusplus.NewDelete, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-use-nodiscard, -modernize-avoid-c-arrays, -readability-magic-numbers, -bugprone-branch-clone, -bugprone-signed-char-misuse, -bugprone-unhandled-self-assignment, -clang-diagnostic-implicit-int-float-conversion, -modernize-use-auto, -modernize-use-trailing-return-type, -readability-convert-member-functions-to-static, -readability-make-member-function-const, -readability-qualified-auto, -readability-redundant-access-specifiers,",
         "--completion-style=detailed",
         "--cross-file-rename=true",
-        "--header-insertion=iwyu",
+        "--header-insertion=never",
         "--pch-storage=memory",
         // 启用这项时，补全函数时，将会给参数提供占位符，键入后按 Tab 可以切换到下一占位符
         "--function-arg-placeholders=true",
@@ -88,7 +94,7 @@
     "vim.vimrc.path": "$HOME/.vsvimrc",
     // 下面定义的按键将交由vscode进行处理，而不是vscode-vim插件
     "vim.handleKeys": {
-        "<C-a>": false,
+        // "<C-a>": false,
         "<C-f>": false,
         "<C-s>": false
     },
