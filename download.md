@@ -5,6 +5,8 @@ sudo apt install xxx
 ```
 **Mainly for Ubuntu 18.04**  
 
+[TOC]
+
 ## Node.js v16.x
 [ref](https://github.com/nodesource/distributions/blob/master/README.md)  
 ```
