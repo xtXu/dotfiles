@@ -40,7 +40,7 @@ sudo ./cuda_11.3.0_465.19.01_linux.run
 ```
 
 ## cudnn
-[ref](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#verify)
+[ref](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#verify)  
 [download](https://developer.nvidia.com/rdp/cudnn-download)
 ```
 tar -xvf cudnn-linux-x86_64-8.x.x.x_cudaX.Y-archive.tar.xz
@@ -50,8 +50,8 @@ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
 ```
 
 ## libtorch
-[Stable version](https://pytorch.org/get-started/locally/)
-[Previous version](https://github.com/pytorch/pytorch/issues/40961)
+[Stable version](https://pytorch.org/get-started/locally/)  
+[Previous version](https://github.com/pytorch/pytorch/issues/40961)  
 eg. libtorch 1.11.0 cuda-11.3  
 ```
 wget https://download.pytorch.org/libtorch/cu113/libtorch-shared-with-deps-1.11.0%2Bcu113.zip
