@@ -53,7 +53,7 @@ return require('packer').startup(function(use)
 	use "norcalli/nvim-colorizer.lua"
 
 	-- UI
-	use "nvim-tree/nvim-tree.lua"
+	use { "nvim-tree/nvim-tree.lua", commit = "0cd8ac4751c39440a1c28c6be4704f3597807d29"}
 	use "nvim-lualine/lualine.nvim"
 	use "arkav/lualine-lsp-progress"
 	use { 'akinsho/bufferline.nvim', tag = "v2.*" }
@@ -129,6 +129,9 @@ return require('packer').startup(function(use)
 	use "williamboman/mason-lspconfig.nvim"
 	use "neovim/nvim-lspconfig"
 	use "p00f/clangd_extensions.nvim"
+
+	-- cmake
+	use "Shatur/neovim-cmake"
 
 	-- latex
 	use "lervag/vimtex"

@@ -219,6 +219,11 @@ _G.packer_plugins = {
     path = "/home/xxt/.local/share/nvim/site/pack/packer/start/neogen",
     url = "https://github.com/danymat/neogen"
   },
+  ["neovim-cmake"] = {
+    loaded = true,
+    path = "/home/xxt/.local/share/nvim/site/pack/packer/start/neovim-cmake",
+    url = "https://github.com/Shatur/neovim-cmake"
+  },
   ["neovim-session-manager"] = {
     loaded = true,
     path = "/home/xxt/.local/share/nvim/site/pack/packer/start/neovim-session-manager",
