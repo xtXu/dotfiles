@@ -58,3 +58,9 @@ eg. libtorch 1.11.0 cuda-11.3
 ```
 wget https://download.pytorch.org/libtorch/cu113/libtorch-shared-with-deps-1.11.0%2Bcu113.zip
 ```
+
+## CloudCompare
+[ref](https://github.com/cloudcompare/cloudcompare)  
+```
+sudo snap install cloudcompare
+```
