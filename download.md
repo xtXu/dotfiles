@@ -64,3 +64,21 @@ wget https://download.pytorch.org/libtorch/cu113/libtorch-shared-with-deps-1.11.
 ```
 sudo snap install cloudcompare
 ```
+## LaTeX+Okular+Neovim
+[ref](https://www.bbsmax.com/A/Vx5MojXpzN/)  
+texlive:  
+```
+sudo apt install texlive-full
+```  
+neovim-remote:  
+```
+pip3 install neovim-remote
+```  
+okular:  
+```  
+sudo apt install okular
+```  
+To configure the inverse-search, in Okular, 'Settings->Configure Okular->Editor->Custom Text Editor':  
+```
+nvim --headless -c "VimtexInverseSearch %l '%f'"
+```  
