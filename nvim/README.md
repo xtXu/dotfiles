@@ -10,6 +10,7 @@ my nvim config
 + ripgrep
 + unzip
 + git (PPA)
++ xclip
 
 ## python3-venv
 ```
@@ -65,4 +66,10 @@ sudo apt install okular
 To configure the inverse-search, in Okular, 'Settings->Configure Okular->Editor->Custom Text Editor':  
 ```
 nvim --headless -c "VimtexInverseSearch %l '%f'"
+```  
+
+## xclip
+It's important for neovim to connect with the system clipboard  
+```
+sudo apt install xclip
 ```  
