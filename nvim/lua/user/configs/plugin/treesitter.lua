@@ -31,7 +31,7 @@ require 'nvim-treesitter.configs'.setup {
 		-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
 		-- the name of the parser)
 		-- list of language that will be disabled
-		-- disable = { "c", "rust" },
+		disable = { "latex"},
 		additional_vim_regex_highlighting = false,
 	},
 

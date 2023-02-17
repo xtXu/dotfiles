@@ -20,6 +20,7 @@ local options = {
   showmatch = false,
   hidden = true,
 	pumheight = 30,
+	-- conceallevel = 2,
 }
 
 vim.opt.shortmess:append "c"
