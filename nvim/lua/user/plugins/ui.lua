@@ -187,11 +187,11 @@ return {
 					enabled = true, -- enables the Noice cmdline UI
 					view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
 				},
-				lsp = {
-					messages = {
-						view = "mini",
-					},
+				messages = {
+					view = "mini",
+				},
 
+				lsp = {
 					hover = {
 						enabled = false,
 						-- view = nil, -- when nil, use defaults from documentation
