@@ -37,6 +37,8 @@ return {
 					-- "aerial",
 					"symbols-outline",
 					"toggleterm",
+					"man",
+					"fzf",
 				},
 
 				sections = {
