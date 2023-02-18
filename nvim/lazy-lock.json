@@ -2,11 +2,13 @@
   "Comment.nvim": { "branch": "master", "commit": "6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43" },
   "bufferline.nvim": { "branch": "main", "commit": "f4af7e5ad68fca928753f280515646803252611d" },
   "catppuccin": { "branch": "main", "commit": "60f8f40df0db92b5715642b3ea7074380c4b7995" },
+  "fzf-lua": { "branch": "main", "commit": "52f0cfd8021404988dc446734711f215bba6a6de" },
   "hop.nvim": { "branch": "master", "commit": "90db1b2c61b820e230599a04fedcd2679e64bd07" },
   "indent-blankline.nvim": { "branch": "master", "commit": "8299fe7703dfff4b1752aeed271c3b95281a952d" },
   "lazy.nvim": { "branch": "main", "commit": "e5ba4434164f8ae9f88d5150018f229e3d0aa9a7" },
   "lualine.nvim": { "branch": "master", "commit": "e99d733e0213ceb8f548ae6551b04ae32e590c80" },
   "nvim-autopairs": { "branch": "master", "commit": "bde7a1b4534e0a4c2451a738379cd628ba65eba7" },
+  "nvim-possession": { "branch": "main", "commit": "5b6c083af72a1e2d443e3ae40a6c47f903825db7" },
   "nvim-surround": { "branch": "main", "commit": "a06dea11e7fdcf338776fa51fa5277163ffb048d" },
   "nvim-tree.lua": { "branch": "master", "commit": "08a0aa1a3b7411ee0a7887c8818528b1558cef96" },
   "nvim-web-devicons": { "branch": "master", "commit": "bb6d4fd1e010300510172b173ab5205d37af084f" }
