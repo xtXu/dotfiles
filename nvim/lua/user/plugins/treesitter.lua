@@ -47,7 +47,7 @@ return {
 			-- specific comment for embended filetype (eg. lua in vimsrcipt)
 			context_commentstring = {
 				enable = true,
-				-- enable_autocmd = true
+				enable_autocmd = false
 			},
 
 			refactor = {
