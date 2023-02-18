@@ -1,5 +1,4 @@
 return {
-()
 	-- Comment
 	{
     "numToStr/Comment.nvim",
