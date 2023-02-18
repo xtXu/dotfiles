@@ -82,7 +82,8 @@ return {
 	-- cmp
 	{
 		"hrsh7th/nvim-cmp",
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		event = "InsertEnter",
 		dependencies = {
 			 "hrsh7th/cmp-nvim-lsp", -- lsp completion
 			 "hrsh7th/cmp-nvim-lua", -- neovim lua api completion
