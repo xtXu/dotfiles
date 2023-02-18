@@ -1,5 +1,5 @@
 return {
-
+()
 	-- Comment
 	{
     "numToStr/Comment.nvim",
@@ -74,7 +74,8 @@ return {
 		},
 		config = function()
 			require("nvim-autopairs").setup {
-				enable_moveright = true
+				enable_moveright = true,
+				check_ts = true
 			}
 		end
 	},
