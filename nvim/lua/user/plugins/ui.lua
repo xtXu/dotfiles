@@ -8,7 +8,6 @@ return {
 			"catppuccin"
 		},
 		config = function()
-
 			local function lsp_client_names()
 				local msg = "No Active Lsp"
 				local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
@@ -90,8 +89,8 @@ return {
 					show_buffer_icons = true,
 					color_icons = true,
 					indicator = {
-							icon = "▎", -- this should be omitted if indicator style is not "icon"
-							style = "icon",
+						icon = "▎", -- this should be omitted if indicator style is not "icon"
+						style = "icon",
 					},
 					separator = "thin",
 					-- numbers = "buffer_id",
@@ -164,7 +163,7 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
-			require("indent_blankline").setup{
+			require("indent_blankline").setup {
 				enabled = true,
 				colored_indent_levels = false,
 				show_current_context = true,
@@ -183,7 +182,38 @@ return {
 		},
 		config = function()
 			require("noice").setup({
-					-- add any options here
+				-- add any options here
+				cmdline = {
+					enabled = true, -- enables the Noice cmdline UI
+					view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+				},
+				lsp = {
+					messages = {
+						view = "mini",
+					},
+
+					hover = {
+						enabled = false,
+						-- view = nil, -- when nil, use defaults from documentation
+						-- ---@type NoiceViewOptions
+						-- opts = {}, -- merged with defaults from documentation
+					},
+					signature = {
+						enabled = false,
+						-- auto_open = {
+						-- 	enabled = true,
+						-- 	trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
+						-- 	luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
+						-- 	throttle = 50, -- Debounce lsp signature help request by 50ms
+						-- },
+						-- view = nil, -- when nil, use defaults from documentation
+						-- ---@type NoiceViewOptions
+						-- opts = {}, -- merged with defaults from documentation
+					},
+				},
+				presets = {
+					bottom_search = true,
+				}
 			})
 		end,
 	},
