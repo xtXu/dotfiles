@@ -7,8 +7,9 @@ return {
 			"nvim-tree/nvim-web-devicons"
 		},
 		highlights = require("catppuccin.groups.integrations.bufferline").get(),
-		cmd = {"NvimTreeToggle", "NvimTreeFindFileToggle"},
-		keys = {"tt", "<cmd>NvimTreeFindFileToggle<cr>", desc="NvimTree"},
+		-- cmd = {"NvimTreeToggle", "NvimTreeFindFileToggle"},
+		-- keys = {"tt", "<cmd>NvimTreeFindFileToggle<cr>", desc="NvimTree"},
+		event = "VeryLazy",
 		config = function()
 			require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
 				-- ignore_ft_on_setup = {"alpha"},
@@ -65,7 +66,8 @@ return {
 			keymap("n", "<leader>fr", "<cmd>lua require('fzf-lua').lsp_references()<CR>", opts)
 			keymap("n", "<leader>fi", "<cmd>lua require('fzf-lua').lsp_implementations()<CR>", opts)
 			keymap("n", "<leader>fe", "<cmd>lua require('fzf-lua').diagnostics_document()<CR>", opts)
-		end
+		end,
+
 	}
 
 
