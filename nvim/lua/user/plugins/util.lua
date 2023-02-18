@@ -28,9 +28,9 @@ return {
         end)
     end,
 
-		post_hook = function()
-        require('nvim-tree').toggle(false, true)
-    end
+		-- post_hook = function()
+  --       require('nvim-tree').toggle(false, true)
+  --   end
 }
 
 
