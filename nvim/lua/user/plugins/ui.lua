@@ -41,9 +41,18 @@ return {
 				},
 
 				sections = {
+					lualine_a = {
+						{ "mode", separator = { right = "" } },
+					},
+					lualine_b = {
+						{"branch", separator = { right = "" } },
+						{"diff", separator = { right = "" } },
+						{"diagnostics", separator = { right = "" } },
+					},
 					lualine_c = {
 						{
 							"filename",
+							separator = { right = "" },
 							file_status = true, -- Displays file status (readonly status, modified status)
 							newfile_status = false, -- Display new file status (new file means no write after created)
 							path = 1, -- 0: Just the filename
@@ -67,9 +76,13 @@ return {
 							color = { fg = "#008080", gui = "bold" },
 						}
 					},
-
-					-- lualine_x = {"lsp_progress", "encoding", "fileformat", "filetype" },
-					-- lualine_x = {lsp_client_names, "encoding", "fileformat", "filetype" },
+					lualine_x = {
+						{"fileformat", separator = { left = "" } },
+						{"encoding", separator = { left = "" } },
+						{"filetype", separator = { left = "" } },
+					},
+					lualine_y = {{"progress", separator = { left = "" } }},
+					lualine_z = {{"location", separator = { left = "" } }}
 				}
 			}
 		end
@@ -84,6 +97,7 @@ return {
 		},
 		config = function()
 			require("bufferline").setup {
+				highlights = require("catppuccin.groups.integrations.bufferline").get(),
 				options = {
 					show_buffer_close_icons = false,
 					show_buffer_icons = true,
