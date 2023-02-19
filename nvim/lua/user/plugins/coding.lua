@@ -260,8 +260,28 @@ return {
 				},
 			})
 		end
+	},
+
+	-- Neogen (doxygen support)
+	{
+    "danymat/neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+		cmd = {"Neogen", "Neogen func", "Neogen class", "Neogen type"},
+		keys = {"<leader>nc", "<leader>nf", "<leader>nt", "<leader>nn"},
+    config = function ()
+    	require("neogen").setup({
+				snippet_engine = "luasnip"
+			})
+
+		local opts = { noremap = true, silent = true }
+		local keymap = vim.api.nvim_set_keymap
+		keymap("n", "<leader>nc", "<cmd>lua require('neogen').generate({type='class'})<CR>", opts)
+		keymap("n", "<leader>nf", "<cmd>lua require('neogen').generate({type='file'})<CR>", opts)
+		keymap("n", "<leader>nt", "<cmd>lua require('neogen').generate({type='type'})<CR>", opts)
+		keymap("n", "<leader>nn", "<cmd>lua require('neogen').generate()<CR>", opts)
+    end,
+    -- Uncomment next line if you want to follow only stable versions
+    -- version = "*" 
 	}
-	
-	
 
 }
