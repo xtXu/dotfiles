@@ -1,6 +1,7 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43" },
   "LuaSnip": { "branch": "master", "commit": "500981ff6cefc7343e3959ef0f939bd0bfd49ba9" },
+  "aerial.nvim": { "branch": "master", "commit": "89031be806abded509a7bafd99bd9944eb5108a5" },
   "bufferline.nvim": { "branch": "main", "commit": "f4af7e5ad68fca928753f280515646803252611d" },
   "catppuccin": { "branch": "main", "commit": "60f8f40df0db92b5715642b3ea7074380c4b7995" },
   "clangd_extensions.nvim": { "branch": "main", "commit": "a5c3c8390dfb342d630bdc25941a4d8f433510be" },
@@ -38,5 +39,6 @@
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "a0f89563ba36b3bacd62cf967b46beb4c2c29e52" },
   "nvim-ts-rainbow": { "branch": "master", "commit": "ef95c15a935f97c65a80e48e12fe72d49aacf9b9" },
   "nvim-web-devicons": { "branch": "master", "commit": "53faf5e6d38cb3ca5c7487421524fa2b187b15b2" },
+  "symbols-outline.nvim": { "branch": "master", "commit": "512791925d57a61c545bc303356e8a8f7869763c" },
   "vim-matchup": { "branch": "master", "commit": "945e01e39fc137bd74bb3aa8c4f40e6ffb5be2dd" }
 }

@@ -67,8 +67,65 @@ return {
 			keymap("n", "<leader>fe", "<cmd>lua require('fzf-lua').diagnostics_document()<CR>", opts)
 		end,
 
-	}
+	},
 
+	-- aerial
+	{
+		"stevearc/aerial.nvim",
+		-- event = { "BufReadPre", "BufNewFile" },
+		cmd = {"AerialToggle"},
+		filter_kind = false,
+		highlight_on_hover = true,
+		config = function()
+			require("aerial").setup({
+				backends = { "lsp", "treesitter", "markdown", "man" },
 
+				-- optionally use on_attach to set keymaps when aerial has attached to a buffer
+				on_attach = function(bufnr)
+					-- Jump forwards/backwards with '{' and '}'
+					vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', {buffer = bufnr})
+					vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', {buffer = bufnr})
+				end
+			})
+		end,
+
+		init = function()
+			local opts = { noremap = true, silent = true }
+			local keymap = vim.api.nvim_set_keymap
+
+			keymap("n", "<leader>a", "<cmd>AerialToggle<CR>", opts)
+		end
+
+		},
+
+		-- symbols-outline
+		{
+			"simrat39/symbols-outline.nvim",
+			cond = false,
+			cmd = {"SymbolsOutline"},
+			opts = {
+				keymaps = { -- These keymaps can be a string or a table for multiple keys
+					-- close = {"<Esc>", "q"},
+					-- goto_location = "<Cr>",
+					-- focus_location = "o",
+					hover_symbol = "gh",
+					toggle_preview = "p",
+					-- rename_symbol = "r",
+					-- code_actions = "a",
+					-- fold = "h",
+					-- unfold = "l",
+					-- fold_all = "W",
+					-- unfold_all = "E",
+					-- fold_reset = "R",
+				},
+			},
+
+			init = function()
+				local opts = { noremap = true, silent = true }
+				local keymap = vim.api.nvim_set_keymap
+				keymap("n", "<leader>o", "<cmd>SymbolsOutline<CR>", opts)
+			end
+
+		}
 
 }
