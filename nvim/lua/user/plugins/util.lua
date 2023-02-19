@@ -116,12 +116,11 @@ return {
 			vim.g.mkdp_page_title = '「${name}」'
 			vim.g.mkdp_filetypes = {'markdown'}
 			vim.g.mkdp_theme = 'light'
-		end,
-		init = function ()
+
 			local opts = { noremap = true, silent = true }
 			local keymap = vim.api.nvim_set_keymap
 			keymap("n", "<leader>mdp", ":MarkdownPreviewToggle<cr>", opts)
-		end
+		end,
 
 	}
 
