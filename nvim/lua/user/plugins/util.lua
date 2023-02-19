@@ -12,7 +12,7 @@ return {
 				autoswitch = {
 					enable = true,
 				}
-			}) 
+			})
 		end,
 
     init = function()
@@ -31,7 +31,16 @@ return {
 		-- post_hook = function()
   --       require('nvim-tree').toggle(false, true)
   --   end
-}
+	},
+
+	-- colorizer
+	{
+		"norcalli/nvim-colorizer.lua",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("colorizer").setup()
+		end
+	}
 
 
 }
