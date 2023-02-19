@@ -101,7 +101,7 @@ return {
 		-- symbols-outline
 		{
 			"simrat39/symbols-outline.nvim",
-			cond = false,
+			enable = false,
 			cmd = {"SymbolsOutline"},
 			opts = {
 				keymaps = { -- These keymaps can be a string or a table for multiple keys
