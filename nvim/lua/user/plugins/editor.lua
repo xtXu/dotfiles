@@ -58,6 +58,12 @@ return {
 			local opts = { noremap = true, silent = true }
 			local keymap = vim.api.nvim_set_keymap
 
+			-- setting in lsp
+			-- keymap(bufnr, "n", "gd", "<cmd>lua require('fzf-lua').lsp_definitions({ jump_to_single_result = true })<CR>", opts)
+			-- keymap(bufnr, "n", "gr", "<cmd>lua require('fzf-lua').lsp_references({ jump_to_single_result = true })<CR>", opts)
+			-- keymap(bufnr, "n", "gD", "<cmd>lua require('fzf-lua').lsp_declarations()<CR>", opts)
+			-- keymap(bufnr, "n", "gi", "<cmd>lua require('fzf-lua').lsp_implementations()<CR>", opts)
+
 			keymap("n", "<leader>ff", "<cmd>lua require('fzf-lua').files({cmd = 'fd --type f --exclude build --exclude logs --exclude devel'})<CR>", opts)
 			keymap("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep_native()<CR>", opts)
 			keymap("n", "<leader>fG", "<cmd>lua require('fzf-lua').grep()<CR>", opts)
@@ -72,6 +78,7 @@ return {
 			keymap("n", "<leader>fr", "<cmd>lua require('fzf-lua').lsp_references()<CR>", opts)
 			keymap("n", "<leader>fi", "<cmd>lua require('fzf-lua').lsp_implementations()<CR>", opts)
 			keymap("n", "<leader>fe", "<cmd>lua require('fzf-lua').diagnostics_document()<CR>", opts)
+			keymap("n", "<leader>fE", "<cmd>lua require('fzf-lua').diagnostics_workspace()<CR>", opts)
 		end,
 
 	},
@@ -347,6 +354,34 @@ return {
 				})
 			end
 
+
+		},
+
+		--trouble
+		{
+
+			"folke/trouble.nvim",
+			dependencies = "nvim-tree/nvim-web-devicons",
+			-- keys = {"<leader>xx", "<leader>xw", "<leader>xd", "<leader>xq", "<leader>gd", "<leader>gr"},
+			event = "VeryLazy",
+			config = function()
+				require("trouble").setup {
+					-- your configuration comes here
+					-- or leave it empty to use the default settings
+					-- refer to the configuration section below
+					height = 20,
+				}
+				local opts = { noremap = true, silent = true }
+				local keymap = vim.api.nvim_set_keymap
+				keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
+				keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
+				keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
+				keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
+
+				-- setting in lsp
+				-- keymap("n", "gd", "<cmd>TroubleToggle lsp_definitions<cr>", opts)
+				-- keymap("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", opts)
+			end
 
 		}
 
