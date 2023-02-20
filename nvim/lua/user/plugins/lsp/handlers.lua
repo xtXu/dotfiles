@@ -70,9 +70,9 @@ local function lsp_keymaps(bufnr)
 	local fzf_status, _ = pcall(require, "fzf-lua")
 
 	if fzf_status then
-		vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua require('fzf-lua').lsp_definitions()<CR>", opts)
+		vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua require('fzf-lua').lsp_definitions({ jump_to_single_result = true })<CR>", opts)
 		vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua require('fzf-lua').lsp_implementations()<CR>", opts)
-		vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua require('fzf-lua').lsp_references()<CR>", opts)
+		vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua require('fzf-lua').lsp_references({ jump_to_single_result = true })<CR>", opts)
 		vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua require('fzf-lua').lsp_declarations()<CR>", opts)
 	else
 		vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>zz", opts)

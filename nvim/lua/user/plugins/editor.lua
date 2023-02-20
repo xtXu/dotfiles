@@ -47,11 +47,18 @@ return {
 			"nvim-tree/nvim-web-devicons"
 		},
 		event = "VeryLazy",
+		config = function ()
+			require("fzf-lua").setup({
+				files = {
+					fd_opts = "--color=never --type f --hidden --exclude .git",
+				},
+			})
+		end,
 		init = function()
 			local opts = { noremap = true, silent = true }
 			local keymap = vim.api.nvim_set_keymap
 
-			keymap("n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>", opts)
+			keymap("n", "<leader>ff", "<cmd>lua require('fzf-lua').files({cmd = 'fd --type f --exclude build --exclude logs --exclude devel'})<CR>", opts)
 			keymap("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep_native()<CR>", opts)
 			keymap("n", "<leader>fG", "<cmd>lua require('fzf-lua').grep()<CR>", opts)
 			keymap("n", "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>", opts)
