@@ -132,7 +132,6 @@ return {
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body) -- For `luasnip` users.
-						-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users
 					end,
 				},
 				mapping = {
@@ -212,9 +211,9 @@ return {
 					-- bordered = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
 					-- completion = cmp.config.window.bordered(),
 					-- documentation = cmp.config.window.bordered(),
-					documentation = {
-						border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
-					}
+					-- documentation = {
+					-- 	border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+					-- }
 				},
 				experimental = {
 					ghost_text = true,
