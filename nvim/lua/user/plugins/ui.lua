@@ -24,6 +24,22 @@ return {
 				return msg
 			end
 
+			local function noice_record()
+				local status, noice = pcall(require, "noice")
+				if status then
+					return noice.api.statusline.mode.get()
+				end
+				return ""
+			end
+
+			local function has_noice()
+				local status, noice = pcall(require, "noice")
+				if status and noice.api.statusline.mode.has() then
+					return true
+				end
+				return false
+			end
+
 			require("lualine").setup {
 				options = {
 					theme = "catppuccin"
@@ -74,6 +90,16 @@ return {
 							icon = " LSP:",
 							-- color = { fg = "#ffffff", gui = "bold" },
 							color = { fg = "#008080", gui = "bold" },
+							separator = { right = "" },
+						},
+					  {
+							-- require("noice").api.statusline.mode.get,
+							-- cond = require("noice").api.statusline.mode.has,
+							-- color = { fg = "#ff9e64" },
+							noice_record,
+							cond = has_noice,
+							color = { fg = "#ff9e64" },
+							separator = { right = "" },
 						}
 					},
 					lualine_x = {
@@ -197,9 +223,28 @@ return {
 		config = function()
 			require("noice").setup({
 				-- add any options here
+				-- routes = { -- showing recording
+				-- 	{
+				-- 		view = "notify",
+				-- 		filter = { event = "msg_showmode" },
+				-- 	},
+				-- },
+				views = {
+				  cmdline_popup = {
+						border = {
+							style = "none",
+							padding = { 2, 3 },
+						},
+						filter_options = {},
+						win_options = {
+							winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+						},
+					},
+				},
 				cmdline = {
 					enabled = true, -- enables the Noice cmdline UI
-					view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+					-- view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+					view = "cmdline", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
 				},
 				messages = {
 					view = "mini",
