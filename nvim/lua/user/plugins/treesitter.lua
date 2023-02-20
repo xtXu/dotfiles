@@ -151,5 +151,9 @@ return {
 		vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 		-- 默认不要折叠
 		vim.wo.foldlevel = 99
+
+		require("treesitter-context").setup {
+			enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+		}
 	end
 }
