@@ -28,9 +28,10 @@ return {
         -- end)
     end,
 
-		-- post_hook = function()
-  --       require('nvim-tree').toggle(false, true)
-  --   end
+		post_hook = function()
+        -- require('nvim-tree').toggle(false, false)
+        -- require('nvim-tree').close()
+    end
 	},
 
 	-- colorizer
@@ -45,7 +46,8 @@ return {
 	-- vimtex
 	{
 		"lervag/vimtex",
-		ft = {"tex", "bib"},
+		-- lazy load can make the inverse search unavailable
+		-- ft = {"tex", "bib"}, 
 		config = function()
 			vim.cmd[[
 			filetype plugin indent on
