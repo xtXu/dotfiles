@@ -87,6 +87,7 @@ return {
 	{
 		"stevearc/aerial.nvim",
 		-- event = { "BufReadPre", "BufNewFile" },
+		enabled = false,
 		cmd = {"AerialToggle"},
 		filter_kind = false,
 		highlight_on_hover = true,
@@ -115,7 +116,7 @@ return {
 		-- symbols-outline
 		{
 			"simrat39/symbols-outline.nvim",
-			enable = false,
+			-- enabled = false,
 			cmd = {"SymbolsOutline"},
 			opts = {
 				keymaps = { -- These keymaps can be a string or a table for multiple keys
