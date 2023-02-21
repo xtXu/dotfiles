@@ -294,17 +294,17 @@ return {
 				}
 			})
 
-			vim.keymap.set({"n", "i", "s"}, "<c-j>", function()
+			vim.keymap.set({"n", "i", "s"}, "<a-j>", function()
 				if not require("noice.lsp").scroll(4) then
-					return "<c-f>"
+					return "<a-j>"
 				end
-			end, { silent = true, expr = true })
+			end, { silent = true, expr = true})
 
-			vim.keymap.set({"n", "i", "s"}, "<c-k>", function()
+			vim.keymap.set({"n", "i", "s"}, "<a-k>", function()
 				if not require("noice.lsp").scroll(-4) then
-					return "<c-b>"
+					return "<a-k>"
 				end
-			end, { silent = true, expr = true })
+			end, { silent = true, expr = true})
 
 		end,
 	},
@@ -405,6 +405,16 @@ return {
 				end,
 			})
 		end
+	},
+
+	-- colorful winsep
+	{
+		"nvim-zh/colorful-winsep.nvim",
+		event = "VeryLazy",
+		config = function ()
+			require("colorful-winsep").setup()
+		end
+
 	}
 
 
