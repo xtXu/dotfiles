@@ -6,7 +6,7 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons"
 		},
-		highlights = require("catppuccin.groups.integrations.bufferline").get(),
+		-- highlights = require("catppuccin.groups.integrations.bufferline").get(),
 		-- cmd = {"NvimTreeToggle", "NvimTreeFindFileToggle"},
 		-- keys = {"tt", "<cmd>NvimTreeFindFileToggle<cr>", desc="NvimTree"},
 		event = "VeryLazy",

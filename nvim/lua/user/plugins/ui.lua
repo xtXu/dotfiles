@@ -5,7 +5,7 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
-			"catppuccin"
+			-- "catppuccin"
 		},
 		config = function()
 			local function lsp_client_names()
@@ -41,9 +41,9 @@ return {
 			end
 
 			require("lualine").setup {
-				options = {
-					theme = "catppuccin"
-				},
+				-- options = {
+				-- 	theme = "catppuccin"
+				-- },
 
 				extensions = {
 					"nvim-tree",
@@ -123,7 +123,7 @@ return {
 		},
 		config = function()
 			require("bufferline").setup {
-				highlights = require("catppuccin.groups.integrations.bufferline").get(),
+				-- highlights = require("catppuccin.groups.integrations.bufferline").get(),
 				options = {
 					show_buffer_close_icons = false,
 					show_buffer_icons = true,
