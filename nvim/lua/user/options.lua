@@ -1,5 +1,5 @@
 local options = {
-  clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
+	clipboard = "unnamedplus",
   hlsearch = true,                         -- highlight all matches on previous search pattern
   ignorecase = true,                       -- ignore case in search patterns
 	incsearch = true,
@@ -29,9 +29,6 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
--- nvim-tree required
-vim.g.loaded = 1
-vim.g.loaded_netrwPlugin = 1
 
 
 -- set .launch file as xml file

@@ -302,7 +302,8 @@ return {
 			end
 
 			require("neoclip").setup({
-				preview = false;
+				default_register = '+',
+				preview = false,
 				keys = {
 					fzf = {
 						select = 'default',

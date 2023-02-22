@@ -38,6 +38,12 @@ return {
 
 		end,
 
+		init = function ()
+			-- nvim-tree required
+			vim.g.loaded = 1
+			vim.g.loaded_netrwPlugin = 1
+		end
+
 	},
 
 	-- fzf-lua
