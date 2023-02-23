@@ -1,5 +1,4 @@
 return {
-
 	-- NvimTree
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -7,9 +6,7 @@ return {
 			"nvim-tree/nvim-web-devicons"
 		},
 		-- highlights = require("catppuccin.groups.integrations.bufferline").get(),
-		-- cmd = {"NvimTreeToggle", "NvimTreeFindFileToggle"},
-		-- keys = {"tt", "<cmd>NvimTreeFindFileToggle<cr>", desc="NvimTree"},
-		event = "VeryLazy",
+		-- event = "VeryLazy",
 		config = function()
 			require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
 				-- ignore_ft_on_setup = {"alpha"},
@@ -30,11 +27,43 @@ return {
 					highlight_opened_files = "name",
 				},
 
+				update_focused_file = {
+					enable = true,
+					update_root = true,
+				}
+
 			} -- END_DEFAULT_OPTS
 
+			-- set keymap
 			local opts = { noremap = true, silent = true }
 			local keymap = vim.api.nvim_set_keymap
 			keymap("n", "tt", "<Cmd>NvimTreeFindFileToggle<CR>", opts)
+
+			-- open on setup
+			local function open_nvim_tree(data)
+				-- buffer is a [No Name]
+				local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+				-- buffer is a directory
+				local directory = vim.fn.isdirectory(data.file) == 1
+
+				-- if not no_name and not directory then
+				-- 	return
+				-- end
+				if not directory then
+					return
+				end
+
+				-- change to the directory
+				if directory then
+					vim.cmd.cd(data.file)
+				end
+
+				-- open the tree
+				require("nvim-tree.api").tree.open()
+			end
+
+			vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 		end,
 

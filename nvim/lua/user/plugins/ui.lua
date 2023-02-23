@@ -202,6 +202,7 @@ return {
 	-- indent-blankline
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("indent_blankline").setup {
 				enabled = true,
@@ -315,6 +316,7 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons"
 		},
+		priority = 500,
 		config = function ()
 			local alpha = require("alpha")
 			local dashboard = require("alpha.themes.dashboard")

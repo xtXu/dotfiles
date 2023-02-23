@@ -11,27 +11,28 @@ return {
 			require("nvim-possession").setup ({
 				autoswitch = {
 					enable = true,
-				}
+				},
+
+				post_hook = function()
+					require('nvim-tree').toggle(false, true)
+				end
 			})
+
 		end,
 
     init = function()
-        -- local possession = require("nvim-possession")
-        -- vim.keymap.set("n", "<leader>sl", function()
-        --     possession.list()
-        -- end)
-        -- vim.keymap.set("n", "<leader>sn", function()
-        --     possession.new()
-        -- end)
-        -- vim.keymap.set("n", "<leader>su", function()
-        --     possession.update()
-        -- end)
+        local possession = require("nvim-possession")
+        vim.keymap.set("n", "<leader><leader>sl", function()
+            possession.list()
+        end)
+        vim.keymap.set("n", "<leader><leader>sn", function()
+            possession.new()
+        end)
+        vim.keymap.set("n", "<leader><leader>su", function()
+            possession.update()
+        end)
     end,
 
-		post_hook = function()
-        -- require('nvim-tree').toggle(false, false)
-        -- require('nvim-tree').close()
-    end
 	},
 
 	-- colorizer
