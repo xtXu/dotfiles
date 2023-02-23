@@ -34,10 +34,9 @@ return {
 		version = 'v2.*', -- optional but strongly recommended
 		config = function()
 			-- you can configure Hop the way you like here; see :h hop-config
-			require'hop'.setup { 
+			require'hop'.setup {
 				jump_on_sole_occurrence = true
 			}
-			
 			local opts = { noremap = true, silent = true }
 
 			vim.api.nvim_set_keymap('', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
@@ -60,7 +59,7 @@ return {
 
 	},
 
-	
+
 	-- autopairs
 	{
 		"windwp/nvim-autopairs",
@@ -77,6 +76,14 @@ return {
 				check_ts = true
 			}
 		end
+	},
+
+	-- luasnip
+	{
+		"L3MON4D3/LuaSnip",
+		keys = function()
+			return {}
+		end,
 	},
 
 	-- cmp
@@ -100,23 +107,28 @@ return {
 			 "rafamadriz/friendly-snippets",
 			 "onsails/lspkind.nvim"
 		},
-		config = function() 
+		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
-			
+
 			require("luasnip/loaders/from_vscode").lazy_load()
 
-			local check_backspace = function()
-				local col = vim.fn.col "." - 1
-				return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+			-- local check_backspace = function()
+			-- 	local col = vim.fn.col "." - 1
+			-- 	return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+			-- end
+			local has_words_before = function()
+						unpack = unpack or table.unpack
+						local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+						return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
 
 			-- local select_behavior = cmp.SelectBehavior.Select
 			local select_behavior = cmp.SelectBehavior.Insert
 
 
-			cmp.setup {
+			cmp.setup({
 				sorting = {
 					comparators = {
 						require("clangd_extensions.cmp_scores"),
@@ -151,19 +163,16 @@ return {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item { behavior = select_behavior }
-						elseif luasnip.expandable() then
-							luasnip.expand()
+						-- elseif luasnip.expandable() then
+						-- 	luasnip.expand()
 						elseif luasnip.expand_or_jumpable() then
 							luasnip.expand_or_jump()
-						-- elseif check_backspace() then
-						-- 	fallback()
+						elseif has_words_before() then
+							cmp.complete()
 						else
 							fallback()
 						end
-					end, {
-						"i",
-						"s",
-					}),
+					end, { "i", "s"}),
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
@@ -172,10 +181,7 @@ return {
 						else
 							fallback()
 						end
-					end, {
-						"i",
-						"s",
-					}),
+					end, { "i", "s"}),
 				},
 				formatting = {
 					fields = { "kind", "abbr", "menu" },
@@ -206,15 +212,6 @@ return {
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = false,
 				},
-				window = {
-					-- bordered = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-					-- bordered = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
-					-- completion = cmp.config.window.bordered(),
-					-- documentation = cmp.config.window.bordered(),
-					-- documentation = {
-					-- 	border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
-					-- }
-				},
 				experimental = {
 					ghost_text = true,
 					native_menu = false,
@@ -222,7 +219,7 @@ return {
 				completion = {
 					keyword_length = 2,
 				},
-			}
+			})
 
 			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline({ '/', '?' }, {
