@@ -149,8 +149,8 @@ return {
 				mapping = {
 					["<C-k>"] = cmp.mapping.select_prev_item { behavior = select_behavior },
 					["<C-j>"] = cmp.mapping.select_next_item { behavior = select_behavior },
-					["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-					["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+					["<A-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+					["<A-j>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 					["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 					["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 					["<C-c>"] = cmp.mapping {
