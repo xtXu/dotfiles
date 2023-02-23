@@ -63,5 +63,28 @@ return {
 			}
 
 		end
+	},
+
+	-- lspsaga
+	{
+		"glepnir/lspsaga.nvim",
+    -- event = "BufRead",
+		lazy = true,
+    config = function()
+        require("lspsaga").setup({
+					scroll_preview = {
+						scroll_down = "<a-j>",
+						scroll_up = "<a-k>",
+					},
+				})
+    end,
+    dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"nvim-treesitter/nvim-treesitter",
+			"neovim/nvim-lspconfig",
+    },
+		-- key setting in lsp handlers
+		-- keys = function()
+		-- end
 	}
 }
