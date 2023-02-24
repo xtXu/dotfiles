@@ -5,6 +5,10 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons"
 		},
+		lazy = false,
+		keys = {
+			{ "tt", "<Cmd>NvimTreeFindFileToggle<CR>" },
+		},
 		-- highlights = require("catppuccin.groups.integrations.bufferline").get(),
 		-- event = "VeryLazy",
 		config = function()
@@ -29,15 +33,9 @@ return {
 
 				update_focused_file = {
 					enable = true,
-					update_root = true,
 				}
 
 			} -- END_DEFAULT_OPTS
-
-			-- set keymap
-			local opts = { noremap = true, silent = true }
-			local keymap = vim.api.nvim_set_keymap
-			keymap("n", "tt", "<Cmd>NvimTreeFindFileToggle<CR>", opts)
 
 			-- open on setup
 			local function open_nvim_tree(data)
@@ -81,7 +79,23 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons"
 		},
-		event = "VeryLazy",
+		keys = {
+			{ "<leader>ff", "<cmd>lua require('fzf-lua').files({cmd = 'fd --type f --exclude build --exclude logs --exclude devel'})<CR>" },
+			{ "<leader>fg", "<cmd>lua require('fzf-lua').live_grep_native()<CR>" },
+			{ "<leader>fG", "<cmd>lua require('fzf-lua').grep()<CR>" },
+			{ "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>" },
+			{ "<leader>fh", "<cmd>lua require('fzf-lua').help_tags()<CR>" },
+			{ "<leader>fo", "<cmd>lua require('fzf-lua').oldfiles()<CR>" },
+			{ "<leader>fq", "<cmd>lua require('fzf-lua').quickfix()<CR>" },
+			{ "<leader>fs", "<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>" },
+			{ "<leader>fS", "<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>" },
+			{ "<leader>fd", "<cmd>lua require('fzf-lua').lsp_definitions()<CR>" },
+			{ "<leader>ftd", "<cmd>lua require('fzf-lua').lsp_typedefs()<CR>" },
+			{ "<leader>fr", "<cmd>lua require('fzf-lua').lsp_references()<CR>" },
+			{ "<leader>fi", "<cmd>lua require('fzf-lua').lsp_implementations()<CR>" },
+			{ "<leader>fe", "<cmd>lua require('fzf-lua').diagnostics_document()<CR>" },
+			{ "<leader>fE", "<cmd>lua require('fzf-lua').diagnostics_workspace()<CR>" },
+		},
 		config = function ()
 			require("fzf-lua").setup({
 				files = {
@@ -90,30 +104,11 @@ return {
 			})
 		end,
 		init = function()
-			local opts = { noremap = true, silent = true }
-			local keymap = vim.api.nvim_set_keymap
-
 			-- setting in lsp
 			-- keymap(bufnr, "n", "gd", "<cmd>lua require('fzf-lua').lsp_definitions({ jump_to_single_result = true })<CR>", opts)
 			-- keymap(bufnr, "n", "gr", "<cmd>lua require('fzf-lua').lsp_references({ jump_to_single_result = true })<CR>", opts)
 			-- keymap(bufnr, "n", "gD", "<cmd>lua require('fzf-lua').lsp_declarations()<CR>", opts)
 			-- keymap(bufnr, "n", "gi", "<cmd>lua require('fzf-lua').lsp_implementations()<CR>", opts)
-
-			keymap("n", "<leader>ff", "<cmd>lua require('fzf-lua').files({cmd = 'fd --type f --exclude build --exclude logs --exclude devel'})<CR>", opts)
-			keymap("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep_native()<CR>", opts)
-			keymap("n", "<leader>fG", "<cmd>lua require('fzf-lua').grep()<CR>", opts)
-			keymap("n", "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>", opts)
-			keymap("n", "<leader>fh", "<cmd>lua require('fzf-lua').help_tags()<CR>", opts)
-			keymap("n", "<leader>fo", "<cmd>lua require('fzf-lua').oldfiles()<CR>", opts)
-			keymap("n", "<leader>fq", "<cmd>lua require('fzf-lua').quickfix()<CR>", opts)
-			keymap("n", "<leader>fs", "<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>", opts)
-			keymap("n", "<leader>fS", "<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>", opts)
-			keymap("n", "<leader>fd", "<cmd>lua require('fzf-lua').lsp_definitions()<CR>", opts)
-			keymap("n", "<leader>ftd", "<cmd>lua require('fzf-lua').lsp_typedefs()<CR>", opts)
-			keymap("n", "<leader>fr", "<cmd>lua require('fzf-lua').lsp_references()<CR>", opts)
-			keymap("n", "<leader>fi", "<cmd>lua require('fzf-lua').lsp_implementations()<CR>", opts)
-			keymap("n", "<leader>fe", "<cmd>lua require('fzf-lua').diagnostics_document()<CR>", opts)
-			keymap("n", "<leader>fE", "<cmd>lua require('fzf-lua').diagnostics_workspace()<CR>", opts)
 		end,
 
 	},
@@ -124,6 +119,9 @@ return {
 		-- event = { "BufReadPre", "BufNewFile" },
 		enabled = false,
 		cmd = {"AerialToggle"},
+		keys = {
+			{ "<leader>a", "<cmd>AerialToggle<CR>" }
+		},
 		filter_kind = false,
 		highlight_on_hover = true,
 		config = function()
@@ -138,14 +136,6 @@ return {
 				end
 			})
 		end,
-
-		init = function()
-			local opts = { noremap = true, silent = true }
-			local keymap = vim.api.nvim_set_keymap
-
-			keymap("n", "<leader>a", "<cmd>AerialToggle<CR>", opts)
-		end
-
 		},
 
 		-- symbols-outline
@@ -153,6 +143,9 @@ return {
 			"simrat39/symbols-outline.nvim",
 			-- enabled = false,
 			cmd = {"SymbolsOutline"},
+			keys = {
+				{ "<leader>o", "<cmd>SymbolsOutline<CR>" }
+			},
 			opts = {
 				keymaps = { -- These keymaps can be a string or a table for multiple keys
 					-- close = {"<Esc>", "q"},
@@ -170,18 +163,15 @@ return {
 				},
 			},
 
-			init = function()
-				local opts = { noremap = true, silent = true }
-				local keymap = vim.api.nvim_set_keymap
-				keymap("n", "<leader>o", "<cmd>SymbolsOutline<CR>", opts)
-			end
-
 		},
 
 		-- toggleterm
 		{
 			"akinsho/toggleterm.nvim",
-			event = "VeryLazy",
+			keys = {
+				{"<c-\\>"},
+				{"<leader>t", "<Cmd>exe v:count1 . 'ToggleTerm direction=float'<CR>"}
+			},
 
 			config = function ()
 
@@ -212,7 +202,7 @@ return {
 				vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
 				-- vim.keymap.set('n', '<leader>t', [[<Cmd>ToggleTerm direction=float<CR>]], opts)
 
-				vim.cmd('noremap <silent><leader>t <Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>')
+				-- vim.cmd('noremap <silent><leader>t <Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>')
 			end
 
 		},
@@ -278,18 +268,18 @@ return {
 			"sindrets/diffview.nvim",
 			-- event = "VeryLazy",
 			cmd = {"DiffViewOpen", "DiffviewFileHistory" },
-			keys = {"<leader>df", "<leader>dh"},
 			dependencies = {
 				"nvim-lua/plenary.nvim"
 			},
+			keys = {
+				{ "<leader>df", ":DiffviewOpen<cr>" },
+				{ "<leader>dh", ":DiffviewFileHistory<cr>" },
+				{ "<leader>dc", ":DiffviewClose<cr>" },
+				{ "<leader>dr", ":DiffviewRefresh<cr>" },
+				{ "<leader>dt", ":DiffviewToggleFiles<cr>" },
+
+			},
 			config = function ()
-				local opts = { noremap = true, silent = true }
-				local keymap = vim.api.nvim_set_keymap
-				keymap("n", "<leader>df", ":DiffviewOpen<cr>", opts)
-				keymap("n", "<leader>dh", ":DiffviewFileHistory<cr>", opts)
-				keymap("n", "<leader>dc", ":DiffviewClose<cr>", opts)
-				keymap("n", "<leader>dr", ":DiffviewRefresh<cr>", opts)
-				keymap("n", "<leader>dt", ":DiffviewToggleFiles<cr>", opts)
 				local diffview = require("diffview")
 				local actions = require("diffview.actions")
 
@@ -398,8 +388,13 @@ return {
 
 			"folke/trouble.nvim",
 			dependencies = "nvim-tree/nvim-web-devicons",
-			-- keys = {"<leader>xx", "<leader>xw", "<leader>xd", "<leader>xq", "<leader>gd", "<leader>gr"},
-			event = "VeryLazy",
+			keys = {
+				{ "<leader>xx", "<cmd>TroubleToggle<cr>" },
+				{ "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>" },
+				{ "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>" },
+				{ "<leader>xq", "<cmd>TroubleToggle quickfix<cr>" },
+
+			},
 			config = function()
 				require("trouble").setup {
 					-- your configuration comes here
@@ -407,13 +402,6 @@ return {
 					-- refer to the configuration section below
 					height = 20,
 				}
-				local opts = { noremap = true, silent = true }
-				local keymap = vim.api.nvim_set_keymap
-				keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
-				keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
-				keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
-				keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
-
 				-- setting in lsp
 				-- keymap("n", "gd", "<cmd>TroubleToggle lsp_definitions<cr>", opts)
 				-- keymap("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", opts)

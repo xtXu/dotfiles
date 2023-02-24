@@ -118,8 +118,13 @@ return {
 	{
 		"akinsho/bufferline.nvim",
 		version = "v3.*",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"nvim-tree/nvim-web-devicons"
+		},
+		keys = {
+			{ "R", ":BufferLineCycleNext<CR>", silent=true},
+			{ "E", ":BufferLineCyclePrev<CR>", silent=true},
 		},
 		config = function()
 			require("bufferline").setup {
@@ -149,52 +154,8 @@ return {
 							highlight = "Directory",
 							separator = false
 						}
-					},
-					groups = {
-						options = {
-							toggle_hidden_on_enter = true
-						},
-						items = {
-							{
-								name = "Main", -- Mandatory
-								-- highlight = {underline = true, sp = "blue"}, -- Optional
-								priority = 1, -- determines where it will appear relative to other groups (Optional)
-								matcher = function(buf) -- Mandatory
-									return buf.filename:match("%.cpp") or buf.filename:match("%.h") or buf.filename:match("%.py")
-								end,
-							},
-							{
-								name = "Docs",
-								-- highlight = {undercurl = true, sp = "green"},
-								auto_close = false,
-								matcher = function(buf)
-									return buf.filename:match("%.md") or buf.filename:match("%.txt")
-								end,
-								separator = { -- Optional
-									style = require("bufferline.groups").separator.tab
-								},
-							},
-							{
-								name = "Config",
-								-- highlight = {undercurl = true, sp = "green"},
-								auto_close = false,
-								matcher = function(buf)
-									return buf.filename:match("%.launch") or buf.filename:match("%.yaml") or buf.filename:match("%.xml")
-								end,
-								-- separator = { -- Optional
-								-- 	style = require("bufferline.groups").separator.tab
-								-- },
-							}
-						}
-					}
-				},
+					}},
 			}
-
-			local opts = { noremap = true, silent = true }
-			local keymap = vim.api.nvim_set_keymap
-
-			keymap("n", "R", ":BufferLineCycleNext<CR>", opts)
-			keymap("n", "E", ":BufferLineCyclePrev<CR>", opts)
 		end
 
 	},
@@ -220,6 +181,19 @@ return {
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
+		},
+		keys = {
+			{"<a-j>", function()
+				if not require("noice.lsp").scroll(4) then
+					return "<a-j>"
+				end
+			end, mode = {"n", "i", "s"},silent = true, expr = true},
+
+			{"<a-k>", function()
+				if not require("noice.lsp").scroll(-4) then
+					return "<a-k>"
+				end
+			end, mode = {"n", "i", "s"},silent = true, expr = true},
 		},
 		config = function()
 			require("noice").setup({
@@ -295,17 +269,6 @@ return {
 				}
 			})
 
-			vim.keymap.set({"n", "i", "s"}, "<a-j>", function()
-				if not require("noice.lsp").scroll(4) then
-					return "<a-j>"
-				end
-			end, { silent = true, expr = true})
-
-			vim.keymap.set({"n", "i", "s"}, "<a-k>", function()
-				if not require("noice.lsp").scroll(-4) then
-					return "<a-k>"
-				end
-			end, { silent = true, expr = true})
 
 		end,
 	},

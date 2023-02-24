@@ -20,6 +20,7 @@ return {
 	{
 		"kylechui/nvim-surround",
 		version = "*",
+		event = "VeryLazy",
 		config = function()
         require("nvim-surround").setup({
             -- Configuration here, or leave empty to use defaults
@@ -32,29 +33,28 @@ return {
 	{
 		"phaazon/hop.nvim",
 		version = 'v2.*', -- optional but strongly recommended
+		keys = {
+			{ 'f', false, mode="s" },
+			{ 'F', false, mode="s" },
+			{ 't', false, mode="s" },
+			{ 'T', false, mode="s" },
+
+			{ "f", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", mode="" },
+			{ "F", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", mode="" },
+			{ "t", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", mode="" },
+			{ "T", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", mode="" },
+			{ "<leader>s", "<cmd>lua require'hop'.hint_char2()<cr>", mode="" },
+			{ "<leader>/", "<cmd>lua require'hop'.hint_patterns()<cr>", mode="" },
+			{ "<leader><leader>l", "<cmd>lua require'hop'.hint_lines()<cr>", mode="" },
+			{ "<leader><leader>j", "<cmd>lua require'hop'.hint_lines({direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<cr>", mode="" },
+			{ "<leader><leader>k", "<cmd>lua require'hop'.hint_lines({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR})<cr>", mode="" },
+
+		},
 		config = function()
 			-- you can configure Hop the way you like here; see :h hop-config
 			require'hop'.setup {
 				jump_on_sole_occurrence = true
 			}
-			local opts = { noremap = true, silent = true }
-
-			vim.api.nvim_set_keymap('', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-			vim.api.nvim_set_keymap('', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-			vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
-			vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
-			vim.api.nvim_set_keymap('', '<leader>s', "<cmd>lua require'hop'.hint_char2()<cr>", {})
-			vim.api.nvim_set_keymap('', '<leader>/', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
-			vim.api.nvim_set_keymap('', '<leader><leader>l', "<cmd>lua require'hop'.hint_lines()<cr>", {})
-			vim.api.nvim_set_keymap('', '<leader><leader>j', "<cmd>lua require'hop'.hint_lines({direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<cr>", {})
-			vim.api.nvim_set_keymap('', '<leader><leader>k', "<cmd>lua require'hop'.hint_lines({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR})<cr>", {})
-
-
-			vim.api.nvim_del_keymap('s', 'f')
-			vim.api.nvim_del_keymap('s', 'F')
-			vim.api.nvim_del_keymap('s', 't')
-			vim.api.nvim_del_keymap('s', 'T')
-
 		end
 
 	},
@@ -263,18 +263,17 @@ return {
     "danymat/neogen",
     dependencies = "nvim-treesitter/nvim-treesitter",
 		cmd = {"Neogen", "Neogen func", "Neogen class", "Neogen type"},
-		keys = {"<leader>nc", "<leader>nf", "<leader>nt", "<leader>nn"},
+		keys = {
+			{ "<leader>nc", "<cmd>lua fun(require)('neogen').generate({type='class'})<CR>", desc="doxygen class" },
+			{ "<leader>nf", "<cmd>lua require('neogen').generate({type='file'})<CR>", desc="doxygen file" },
+			{ "<leader>nt", "<cmd>lua require('neogen').generate({type='type'})<CR>", desc="doxygen type" },
+			{ "<leader>nn", "<cmd>lua require('neogen').generate()<CR>", desc="doxygen" },
+		},
     config = function ()
     	require("neogen").setup({
 				snippet_engine = "luasnip"
 			})
 
-		local opts = { noremap = true, silent = true }
-		local keymap = vim.api.nvim_set_keymap
-		keymap("n", "<leader>nc", "<cmd>lua require('neogen').generate({type='class'})<CR>", opts)
-		keymap("n", "<leader>nf", "<cmd>lua require('neogen').generate({type='file'})<CR>", opts)
-		keymap("n", "<leader>nt", "<cmd>lua require('neogen').generate({type='type'})<CR>", opts)
-		keymap("n", "<leader>nn", "<cmd>lua require('neogen').generate()<CR>", opts)
     end,
     -- Uncomment next line if you want to follow only stable versions
     -- version = "*" 
@@ -284,6 +283,9 @@ return {
 	{
 		"AckslD/nvim-neoclip.lua",
 		event = { "BufReadPre", "BufNewFile" },
+		keys = {
+			{ "<leader>p", "<cmd>lua require('neoclip.fzf')()<cr>" }
+		},
 		config = function()
 			local function is_whitespace(line)
 				return vim.fn.match(line, [[^\s*$]]) ~= -1
@@ -314,9 +316,6 @@ return {
 					return not all(data.event.regcontents, is_whitespace)
 				end,
 			})
-
-			local opts = { noremap = true, silent = true }
-			vim.api.nvim_set_keymap("n", "<leader>p", "<cmd>lua require('neoclip.fzf')()<cr>", opts)
 
 		end,
 

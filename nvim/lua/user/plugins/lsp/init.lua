@@ -1,6 +1,6 @@
 return {
 
-	{ 
+	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
@@ -76,6 +76,9 @@ return {
 						scroll_down = "<a-j>",
 						scroll_up = "<a-k>",
 					},
+					symbol_in_winbar = {
+							enable = false,
+						},
 				})
     end,
     dependencies = {

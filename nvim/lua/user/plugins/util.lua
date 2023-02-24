@@ -6,7 +6,24 @@ return {
     dependencies = {
         "ibhagwan/fzf-lua",
     },
+		keys = {
+			{
+				"<leader><leader>sl", function()
+					require("possession").list()
+				end
+			},
+			{
+				"<leader><leader>sn", function()
+					require("possession").new()
+				end
+			},
+			{
+				"<leader><leader>su", function()
+					require("possession").update()
+				end
+			}
 
+		},
     config = function()
 			require("nvim-possession").setup ({
 				autoswitch = {
@@ -19,20 +36,6 @@ return {
 			})
 
 		end,
-
-    init = function()
-        local possession = require("nvim-possession")
-        vim.keymap.set("n", "<leader><leader>sl", function()
-            possession.list()
-        end)
-        vim.keymap.set("n", "<leader><leader>sn", function()
-            possession.new()
-        end)
-        vim.keymap.set("n", "<leader><leader>su", function()
-            possession.update()
-        end)
-    end,
-
 	},
 
 	-- colorizer
@@ -87,6 +90,10 @@ return {
 		"iamcco/markdown-preview.nvim",
 		build = function() vim.fn["mkdp#util#install"]() end,
 		ft = {"markdown"},
+		keys = {
+			{"<leader>mdp", "<cmd>MarkdownPreviewToggle<cr>"}
+
+		},
 		config = function ()
 			vim.g.mkdp_auto_start = 0
 			vim.g.mkdp_auto_close = 1
@@ -119,12 +126,16 @@ return {
 			vim.g.mkdp_page_title = '「${name}」'
 			vim.g.mkdp_filetypes = {'markdown'}
 			vim.g.mkdp_theme = 'light'
-
-			local opts = { noremap = true, silent = true }
-			local keymap = vim.api.nvim_set_keymap
-			keymap("n", "<leader>mdp", ":MarkdownPreviewToggle<cr>", opts)
 		end,
 
+	},
+
+	-- delete buffer without close the window
+	{
+		"famiu/bufdelete.nvim",
+		keys = {
+			{"<leader>bd", "<cmd>Bdelete<cr>"}
+		}
 	}
 
 
