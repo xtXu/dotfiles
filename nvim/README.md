@@ -1,7 +1,12 @@
 # nvim
 my nvim config
 
-# dependecies
+## clean the original config
+mv ~/.local/share/nvim ~/.local/share/nvim.bak  
+mv ~/.local/state/nvim ~/.local/state/nvim.bak  
+mv ~/.cache/nvim ~/.cache/nvim.bak  
+
+## dependecies
 + python3
 + pip3
 + python3-venv

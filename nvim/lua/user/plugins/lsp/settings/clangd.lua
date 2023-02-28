@@ -28,3 +28,4 @@ return {
 
 	filetypes = {"c", "cc", "cpp", "objc", "objcpp", "cuda", "proto" }
 }
+
