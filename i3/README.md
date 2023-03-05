@@ -2,7 +2,7 @@
 
 ## Usage
 ```bash
-ln -s ../i3 ~/.config/i3
+ln -s ~/dotfiles/i3 ~/.config/i3
 ```
 
 ## Dependencies

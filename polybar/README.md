@@ -2,7 +2,7 @@
 
 ## Usage
 ```bash
-ln -s ../polybar ~/.config/polybar
+ln -s ~/dotfiles/polybar ~/.config/polybar
 ```
 
 ## Dependencies:

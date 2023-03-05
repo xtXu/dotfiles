@@ -2,7 +2,7 @@
 
 ## Usage
 ```bash
-ln -s ../rofi ~/.config/rofi
+ln -s ~/dotfiles/rofi ~/.config/rofi
 ```
 
 ## Dependencies

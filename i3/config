@@ -226,8 +226,10 @@ default_border pixel 2
 smart_gaps on
 smart_borders on
 # gaps outer 10
+client.focused #4c7899 #285577 #ffffff #2e9ef4 #7E9CD8	
 
 
+# autostart
 exec --no-startup-id fcitx
 exec --no-startup-id ibus-daemon
 # set the two screen layout
