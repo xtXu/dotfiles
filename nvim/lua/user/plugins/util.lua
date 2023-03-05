@@ -9,17 +9,17 @@ return {
 		keys = {
 			{
 				"<leader><leader>sl", function()
-					require("possession").list()
+					require("nvim-possession").list()
 				end
 			},
 			{
 				"<leader><leader>sn", function()
-					require("possession").new()
+					require("nvim-possession").new()
 				end
 			},
 			{
 				"<leader><leader>su", function()
-					require("possession").update()
+					require("nvim-possession").update()
 				end
 			}
 

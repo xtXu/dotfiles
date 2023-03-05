@@ -1,0 +1,33 @@
+/* colors */
+
+/* blue */
+* {
+  al:   #00000000;
+  bg:   #1F1F1FFF;
+  bga:  #1e88e533;
+  bar:  #FFFFFFFF;
+  fg:   #FFFFFFFF;
+  ac:   #1e88e5FF;
+}
+
+
+/* /* blue grey */ */
+/* * { */
+/*   al:   #00000000; */
+/*   bg:   #1F1F1FFF; */
+/*   bga:  #546e7a33; */
+/*   bar:  #FFFFFFFF; */
+/*   fg:   #FFFFFFFF; */
+/*   ac:   #546e7aFF; */
+/* } */
+
+
+/* /* grey */ */
+/* * { */
+/*   al:   #00000000; */
+/*   bg:   #1F1F1FFF; */
+/*   bga:  #75757533; */
+/*   bar:  #FFFFFFFF; */
+/*   fg:   #FFFFFFFF; */
+/*   ac:   #757575FF; */
+/* } */

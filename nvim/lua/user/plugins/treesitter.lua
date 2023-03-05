@@ -23,7 +23,7 @@ return {
 			auto_install = true,
 
 			-- List of parsers to ignore installing (for "all")
-			-- ignore_install = { "javascript" },
+			ignore_install = { "ini" },
 
 			highlight = {
 				-- `false` will disable the whole extension
