@@ -15,6 +15,22 @@ ln -s ~/dotfiles/i3 ~/.config/i3
 + pulseaudio
 + pavucontrol
 
+### system setup
+To set proxy and input method, add following at `/etc/environment`:
+```bash
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+
+http_proxy="http://127.0.0.1:7890"
+https_proxy="http://127.0.0.1:7890"
+
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+INPUT_METHOD=fcitx
+SDL_IM_MODULE=fcitx
+GLFW_IM_MODULE=ibus
+```
+
 ### rofi setup
 `launcher.sh` is required in `~/.config/rofi`.
 
