@@ -15,7 +15,8 @@ zi wait lucid for \
 	OMZP::sudo \
 	OMZP::safe-paste \
 	OMZP::pip \
-	OMZP::colorize
+	OMZP::colorize \
+	OMZP::git
 
 # normal plugin
 zi wait lucid light-mode for \
