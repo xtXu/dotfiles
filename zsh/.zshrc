@@ -47,6 +47,7 @@ setopt nonomatch
 
 # aliases
 alias c="xclip -selection clipboard" # {cmd} | c to redirect the output to the system clipboard
+alias lg="lazygit"
 
 # Path
 export PATH=$HOME/bin:/usr/local/bin:$PATH
