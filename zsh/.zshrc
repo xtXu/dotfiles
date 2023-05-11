@@ -52,8 +52,8 @@ alias c="xclip -selection clipboard" # {cmd} | c to redirect the output to the s
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # proxy
-export http_proxy="http://127.0.0.1:7890"
-export https_proxy="http://127.0.0.1:7890"
+# export http_proxy="http://127.0.0.1:7890"
+# export https_proxy="http://127.0.0.1:7890"
 
 # ROS
 source /opt/ros/melodic/setup.zsh
