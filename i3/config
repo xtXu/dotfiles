@@ -254,7 +254,7 @@ client.focused #4c7899 #285577 #ffffff #2e9ef4 #7E9CD8
 
 # autostart
 exec --no-startup-id fcitx
-exec --no-startup-id ibus-daemon
+# exec --no-startup-id ibus-daemon
 exec --no-startup-id lxpolkit
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 # set the two screen layout

@@ -30,34 +30,54 @@ return {
 
 
 	-- hop
+	-- {
+	-- 	"phaazon/hop.nvim",
+	-- 	version = 'v2.*', -- optional but strongly recommended
+	-- 	keys = {
+	-- 		{ 'f', false, mode="s" },
+	-- 		{ 'F', false, mode="s" },
+	-- 		{ 't', false, mode="s" },
+	-- 		{ 'T', false, mode="s" },
+	--
+	-- 		{ "f", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", mode="" },
+	-- 		{ "F", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", mode="" },
+	-- 		{ "t", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", mode="" },
+	-- 		{ "T", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", mode="" },
+	-- 		{ "<leader>s", "<cmd>lua require'hop'.hint_char2()<cr>", mode="" },
+	-- 		{ "<leader>/", "<cmd>lua require'hop'.hint_patterns()<cr>", mode="" },
+	-- 		{ "<leader><leader>l", "<cmd>lua require'hop'.hint_lines()<cr>", mode="" },
+	-- 		{ "<leader><leader>j", "<cmd>lua require'hop'.hint_lines({direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<cr>", mode="" },
+	-- 		{ "<leader><leader>k", "<cmd>lua require'hop'.hint_lines({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR})<cr>", mode="" },
+	--
+	-- 	},
+	-- 	config = function()
+	-- 		-- you can configure Hop the way you like here; see :h hop-config
+	-- 		require'hop'.setup {
+	-- 			jump_on_sole_occurrence = true
+	-- 		}
+	-- 	end
+	--
+	-- },
+
+	-- leap.nvim
 	{
-		"phaazon/hop.nvim",
-		version = 'v2.*', -- optional but strongly recommended
-		keys = {
-			{ 'f', false, mode="s" },
-			{ 'F', false, mode="s" },
-			{ 't', false, mode="s" },
-			{ 'T', false, mode="s" },
-
-			{ "f", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", mode="" },
-			{ "F", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", mode="" },
-			{ "t", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", mode="" },
-			{ "T", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", mode="" },
-			{ "<leader>s", "<cmd>lua require'hop'.hint_char2()<cr>", mode="" },
-			{ "<leader>/", "<cmd>lua require'hop'.hint_patterns()<cr>", mode="" },
-			{ "<leader><leader>l", "<cmd>lua require'hop'.hint_lines()<cr>", mode="" },
-			{ "<leader><leader>j", "<cmd>lua require'hop'.hint_lines({direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<cr>", mode="" },
-			{ "<leader><leader>k", "<cmd>lua require'hop'.hint_lines({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR})<cr>", mode="" },
-
+		"ggandor/leap.nvim",
+		config = function()
+			require('leap').add_default_mappings()
+		end
+	},
+	{
+		"ggandor/flit.nvim",
+		dependencies = {
+			"ggandor/leap.nvim",
 		},
 		config = function()
-			-- you can configure Hop the way you like here; see :h hop-config
-			require'hop'.setup {
-				jump_on_sole_occurrence = true
+			require('flit').setup {
+				labeled_modes = "nv",
 			}
 		end
-
 	},
+	
 
 
 	-- autopairs
@@ -85,6 +105,18 @@ return {
 			return {}
 		end,
 	},
+
+	-- coq
+	-- {
+	-- 	"ms-jpq/coq_nvim",
+	-- 	version = "coq",
+	-- 	event = "InsertEnter",
+	-- 	dependencies = {
+	-- 		{"ms-jpq/coq.artifacts", version="artifacts"},
+	-- 		{"ms-jpq/coq.thirdparty", version="3p"},
+	-- 	}
+	--
+	-- },
 
 	-- cmp
 	{
@@ -163,10 +195,6 @@ return {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item { behavior = select_behavior }
-						-- elseif luasnip.expandable() then
-						-- 	luasnip.expand()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
 						elseif has_words_before() then
 							cmp.complete()
 						else
@@ -176,8 +204,13 @@ return {
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s"}),
+					["<C-n>"] = cmp.mapping(function(fallback)
+						if luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
 						else
 							fallback()
 						end

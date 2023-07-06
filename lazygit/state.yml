@@ -1,6 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/xxt/dotfiles
+- /home/xxt/px4_fastplanner_ws/src/px4-fastplanner/Fast-Planner
 startuppopupversion: 5
 customcommandshistory:
 - qa

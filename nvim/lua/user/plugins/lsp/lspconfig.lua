@@ -1,5 +1,6 @@
 local handlers = require("user.plugins.lsp.handlers")
 local lspconfig = require("lspconfig")
+-- local coq = require("coq")
 
 local opt = {
 	on_attach = handlers.on_attach,
@@ -23,6 +24,7 @@ require("mason-lspconfig").setup_handlers {
 		end
 
 		require("lspconfig")[server_name].setup(opts)
+		-- require("lspconfig")[server_name].setup(coq.lsp_ensure_capabilities(opts))
 	end,
 	-- Next, you can provide a dedicated handler for specific servers.
 	-- For example, a handler override for the `rust_analyzer`:
