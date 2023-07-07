@@ -33,7 +33,7 @@ end
 
 -- set .launch file as xml file
 
--- vim.cmd[[au BufNew,BufRead,BufNewFile *.launch set filetype=xml]]
+vim.cmd[[au BufNew,BufNewFile,BufRead *.launch set filetype=xml]]
 
 
 -- vim.cmd "set whichwrap+=<,>,[,],h,l"

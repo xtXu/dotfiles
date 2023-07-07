@@ -1,10 +1,10 @@
 return {
 	-- Comment
 	{
-    "numToStr/Comment.nvim",
+		"numToStr/Comment.nvim",
 		keys = {
 			"gcc", "gbc", "gco", "gcO", "gcA",
-			{"gc", "gb", mode="v"},
+			{ "gc", "gb", mode = "v" },
 		},
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
@@ -22,10 +22,10 @@ return {
 		version = "*",
 		event = "VeryLazy",
 		config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
-    end
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end
 	},
 
 
@@ -60,35 +60,113 @@ return {
 	-- },
 
 	-- leap.nvim
+	-- {
+	-- 	"ggandor/leap.nvim",
+	-- 	config = function()
+	-- 		require('leap').add_default_mappings()
+	-- 	end
+	-- },
+	-- {
+	-- 	"ggandor/flit.nvim",
+	-- 	dependencies = {
+	-- 		"ggandor/leap.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		require('flit').setup {
+	-- 			labeled_modes = "nv",
+	-- 		}
+	-- 	end
+	-- },
+	-- {
+	-- 	"ggandor/leap-ast.nvim",
+	-- 	dependencies = {
+	-- 		"ggandor/leap.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		vim.keymap.set({'n', 'x', 'o'}, '<C-s>', function() require'leap-ast'.leap() end, {})
+	-- 	end
+	-- },
+	-- {
+	-- 	"ggandor/leap-spooky.nvim",
+	-- 	dependencies = {
+	-- 		"ggandor/leap.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		require('leap-spooky').setup {}
+	-- 	end
+	-- },
+
+
+	-- flash.nvim
 	{
-		"ggandor/leap.nvim",
-		config = function()
-			require('leap').add_default_mappings()
-		end
-	},
-	{
-		"ggandor/flit.nvim",
-		dependencies = {
-			"ggandor/leap.nvim",
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		---@type Flash.Config
+		opts = {},
+		keys = {
+			{
+				"s",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
+			},
+			{
+				"S",
+				mode = { "n", "o", "x" },
+				function()
+					require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter",
+			},
+			{
+				"r",
+				mode = "o",
+				function()
+					require("flash").remote()
+				end,
+				desc = "Remote Flash",
+			},
+			{
+				"R",
+				mode = { "o", "x" },
+				function()
+					require("flash").treesitter_search()
+				end,
+				desc = "Flash Treesitter Search",
+			},
+			{
+				"<c-s>",
+				mode = { "c" },
+				function()
+					require("flash").toggle()
+				end,
+				desc = "Toggle Flash Search",
+			},
 		},
-		config = function()
-			require('flit').setup {
-				labeled_modes = "nv",
+		config = function ()
+			require("flash").setup {
+				label = {
+					rainbow = {
+						enabled = true,
+					}
+				}
 			}
 		end
 	},
-	
+
 
 
 	-- autopairs
 	{
 		"windwp/nvim-autopairs",
 		keys = {
-			{"\"",mode="i"},
-			{"\'",mode="i"},
-			{"(",mode="i"},
-			{"{",mode="i"},
-			{"[",mode="i"},
+			{ "\"", mode = "i" },
+			{ "\'", mode = "i" },
+			{ "(",  mode = "i" },
+			{ "{",  mode = "i" },
+			{ "[",  mode = "i" },
 		},
 		config = function()
 			require("nvim-autopairs").setup {
@@ -124,20 +202,20 @@ return {
 		-- event = "VeryLazy",
 		event = "InsertEnter",
 		dependencies = {
-			 "hrsh7th/cmp-nvim-lsp", -- lsp completion
-			 "hrsh7th/cmp-nvim-lua", -- neovim lua api completion
-			 "hrsh7th/cmp-buffer", -- buffer completions
-			 "hrsh7th/cmp-path", -- path completions
-			 "hrsh7th/cmp-cmdline", -- cmdline completions
-			 "saadparwaiz1/cmp_luasnip", -- snippet completions
-			 "hrsh7th/cmp-nvim-lsp-document-symbol", -- cmd line symbol source
-			 -- "hrsh7th/cmp-nvim-lsp-signature-help",
-			 -- "ray-x/lsp_signature.nvim",
-			 "kdheepak/cmp-latex-symbols",
+			"hrsh7th/cmp-nvim-lsp", -- lsp completion
+			"hrsh7th/cmp-nvim-lua", -- neovim lua api completion
+			"hrsh7th/cmp-buffer", -- buffer completions
+			"hrsh7th/cmp-path", -- path completions
+			"hrsh7th/cmp-cmdline", -- cmdline completions
+			"saadparwaiz1/cmp_luasnip", -- snippet completions
+			"hrsh7th/cmp-nvim-lsp-document-symbol", -- cmd line symbol source
+			-- "hrsh7th/cmp-nvim-lsp-signature-help",
+			-- "ray-x/lsp_signature.nvim",
+			"kdheepak/cmp-latex-symbols",
 
-			 {"L3MON4D3/LuaSnip", version="v1.*"},
-			 "rafamadriz/friendly-snippets",
-			 "onsails/lspkind.nvim"
+			{ "L3MON4D3/LuaSnip", version = "v1.*" },
+			"rafamadriz/friendly-snippets",
+			"onsails/lspkind.nvim"
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -151,9 +229,9 @@ return {
 			-- 	return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 			-- end
 			local has_words_before = function()
-						unpack = unpack or table.unpack
-						local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-						return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+				unpack = unpack or table.unpack
+				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+				return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
 
 			-- local select_behavior = cmp.SelectBehavior.Select
@@ -172,7 +250,7 @@ return {
 						cmp.config.compare.length,
 						cmp.config.compare.order,
 					},
-				 },
+				},
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -181,7 +259,7 @@ return {
 				mapping = {
 					["<C-k>"] = cmp.mapping.select_prev_item { behavior = select_behavior },
 					["<C-j>"] = cmp.mapping.select_next_item { behavior = select_behavior },
-					["<A-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+					["<A-k>"] = cmp.mapping(cmp.mapping.scroll_docs( -1), { "i", "c" }),
 					["<A-j>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 					["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 					["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
@@ -200,21 +278,21 @@ return {
 						else
 							fallback()
 						end
-					end, { "i", "s"}),
+					end, { "i", "s" }),
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
 						else
 							fallback()
 						end
-					end, { "i", "s"}),
+					end, { "i", "s" }),
 					["<C-n>"] = cmp.mapping(function(fallback)
 						if luasnip.expand_or_jumpable() then
 							luasnip.expand_or_jump()
 						else
 							fallback()
 						end
-					end, { "i", "s"}),
+					end, { "i", "s" }),
 				},
 				formatting = {
 					fields = { "kind", "abbr", "menu" },
@@ -233,7 +311,7 @@ return {
 					}),
 				},
 				sources = {
-					{ name = "nvim_lsp", max_item_count = 1000000},
+					{ name = "nvim_lsp",     max_item_count = 1000000 },
 					{ name = "nvim_lua" },
 					{ name = "luasnip" },
 					{ name = "latex_symbols" },
@@ -279,7 +357,6 @@ return {
 				}, {
 					{ name = 'cmdline' }
 				}),
-
 				formatting = {
 					format = lspkind.cmp_format({
 						mode = "symbol",
@@ -293,23 +370,22 @@ return {
 
 	-- Neogen (doxygen support)
 	{
-    "danymat/neogen",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-		cmd = {"Neogen", "Neogen func", "Neogen class", "Neogen type"},
+		"danymat/neogen",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		cmd = { "Neogen", "Neogen func", "Neogen class", "Neogen type" },
 		keys = {
-			{ "<leader>nc", "<cmd>lua fun(require)('neogen').generate({type='class'})<CR>", desc="doxygen class" },
-			{ "<leader>nf", "<cmd>lua require('neogen').generate({type='file'})<CR>", desc="doxygen file" },
-			{ "<leader>nt", "<cmd>lua require('neogen').generate({type='type'})<CR>", desc="doxygen type" },
-			{ "<leader>nn", "<cmd>lua require('neogen').generate()<CR>", desc="doxygen" },
+			{ "<leader>nc", "<cmd>lua fun(require)('neogen').generate({type='class'})<CR>", desc = "doxygen class" },
+			{ "<leader>nf", "<cmd>lua require('neogen').generate({type='file'})<CR>",       desc = "doxygen file" },
+			{ "<leader>nt", "<cmd>lua require('neogen').generate({type='type'})<CR>",       desc = "doxygen type" },
+			{ "<leader>nn", "<cmd>lua require('neogen').generate()<CR>",                    desc = "doxygen" },
 		},
-    config = function ()
-    	require("neogen").setup({
+		config = function()
+			require("neogen").setup({
 				snippet_engine = "luasnip"
 			})
-
-    end,
-    -- Uncomment next line if you want to follow only stable versions
-    -- version = "*" 
+		end,
+		-- Uncomment next line if you want to follow only stable versions
+		-- version = "*"
 	},
 
 	-- neoclip
@@ -344,12 +420,10 @@ return {
 						custom = {},
 					},
 				},
-
 				filter = function(data)
 					return not all(data.event.regcontents, is_whitespace)
 				end,
 			})
-
 		end,
 
 	},
