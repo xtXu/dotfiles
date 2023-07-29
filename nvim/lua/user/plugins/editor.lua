@@ -79,7 +79,8 @@ return {
 			"nvim-tree/nvim-web-devicons"
 		},
 		keys = {
-			{ "<leader>ff",  "<cmd>lua require('fzf-lua').files({cmd = 'fd --type f --exclude build --exclude logs --exclude devel'})<CR>" },
+			{ "<leader>ff",
+				                 "<cmd>lua require('fzf-lua').files({cmd = 'fd --type f --exclude build --exclude logs --exclude devel'})<CR>" },
 			{ "<leader>fg",  "<cmd>lua require('fzf-lua').live_grep_native()<CR>" },
 			{ "<leader>fG",  "<cmd>lua require('fzf-lua').grep()<CR>" },
 			{ "<leader>fb",  "<cmd>lua require('fzf-lua').buffers()<CR>" },
@@ -286,16 +287,16 @@ return {
 					view = {
 						-- The `view` bindings are active in the diff buffers, only when the current
 						-- tabpage is a Diffview.
-						["<tab>"]      = actions.select_next_entry, -- Open the diff for the next file
-						["<s-tab>"]    = actions.select_prev_entry, -- Open the diff for the previous file
-						["gf"]         = actions.goto_file, -- Open the file in a new split in the previous tabpage
-						["<C-w><C-f>"] = actions.goto_file_split, -- Open the file in a new split
-						["<C-w>gf"]    = actions.goto_file_tab, -- Open the file in a new tabpage
-						["<leader>e"]  = actions.focus_files, -- Bring focus to the file panel
-						["<leader>b"]  = actions.toggle_files, -- Toggle the file panel.
-						["g<C-x>"]     = actions.cycle_layout, -- Cycle through available layouts.
-						["[x"]         = actions.prev_conflict, -- In the merge_tool: jump to the previous conflict
-						["]x"]         = actions.next_conflict, -- In the merge_tool: jump to the next conflict
+						["<tab>"]      = actions.select_next_entry,   -- Open the diff for the next file
+						["<s-tab>"]    = actions.select_prev_entry,   -- Open the diff for the previous file
+						["gf"]         = actions.goto_file,           -- Open the file in a new split in the previous tabpage
+						["<C-w><C-f>"] = actions.goto_file_split,     -- Open the file in a new split
+						["<C-w>gf"]    = actions.goto_file_tab,       -- Open the file in a new tabpage
+						["<leader>e"]  = actions.focus_files,         -- Bring focus to the file panel
+						["<leader>b"]  = actions.toggle_files,        -- Toggle the file panel.
+						["g<C-x>"]     = actions.cycle_layout,        -- Cycle through available layouts.
+						["[x"]         = actions.prev_conflict,       -- In the merge_tool: jump to the previous conflict
+						["]x"]         = actions.next_conflict,       -- In the merge_tool: jump to the next conflict
 						["<leader>co"] = actions.conflict_choose("ours"), -- Choose the OURS version of a conflict
 						["<leader>ct"] = actions.conflict_choose("theirs"), -- Choose the THEIRS version of a conflict
 						["<leader>cb"] = actions.conflict_choose("base"), -- Choose the BASE version of a conflict
@@ -324,11 +325,11 @@ return {
 						["o"]             = actions.select_entry,
 						["<2-LeftMouse>"] = actions.select_entry,
 						["-"]             = actions.toggle_stage_entry, -- Stage / unstage the selected entry.
-						["S"]             = actions.stage_all, -- Stage all entries.
-						["U"]             = actions.unstage_all, -- Unstage all entries.
+						["S"]             = actions.stage_all,     -- Stage all entries.
+						["U"]             = actions.unstage_all,   -- Unstage all entries.
 						["X"]             = actions.restore_entry, -- Restore entry to the state on the left side.
 						["L"]             = actions.open_commit_log, -- Open the commit log panel.
-						["<c-b>"]         = actions.scroll_view( -0.25), -- Scroll the view up
+						["<c-b>"]         = actions.scroll_view(-0.25), -- Scroll the view up
 						["<c-f>"]         = actions.scroll_view(0.25), -- Scroll the view down
 						["<tab>"]         = actions.select_next_entry,
 						["<s-tab>"]       = actions.select_prev_entry,
@@ -345,9 +346,9 @@ return {
 						["]x"]            = actions.next_conflict,
 					},
 					file_history_panel = {
-						["g!"]            = actions.options, -- Open the option panel
+						["g!"]            = actions.options,    -- Open the option panel
 						["<C-A-d>"]       = actions.open_in_diffview, -- Open the entry under the cursor in a diffview
-						["y"]             = actions.copy_hash, -- Copy the commit hash of the entry under the cursor
+						["y"]             = actions.copy_hash,  -- Copy the commit hash of the entry under the cursor
 						["L"]             = actions.open_commit_log,
 						["zR"]            = actions.open_all_folds,
 						["zM"]            = actions.close_all_folds,
@@ -358,7 +359,7 @@ return {
 						["<cr>"]          = actions.select_entry,
 						["o"]             = actions.select_entry,
 						["<2-LeftMouse>"] = actions.select_entry,
-						["<c-b>"]         = actions.scroll_view( -0.25),
+						["<c-b>"]         = actions.scroll_view(-0.25),
 						["<c-f>"]         = actions.scroll_view(0.25),
 						["<tab>"]         = actions.select_next_entry,
 						["<s-tab>"]       = actions.select_prev_entry,
@@ -398,9 +399,9 @@ return {
 				-- or leave it empty to use the default settings
 				-- refer to the configuration section below
 				height = 20,
-				action_keys = { -- key mappings for actions in the trouble list
+				action_keys = {                -- key mappings for actions in the trouble list
 					jump_close = { "<cr>", "<tab>" }, -- jump to the diagnostic or open / close folds
-					jump = { "o" }, -- jump to the diagnostic and close the list
+					jump = { "o" },              -- jump to the diagnostic and close the list
 				},
 			}
 			-- setting in lsp
@@ -408,6 +409,5 @@ return {
 			-- keymap("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", opts)
 		end
 
-	}
-
+	},
 }

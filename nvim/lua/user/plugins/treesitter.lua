@@ -6,7 +6,7 @@ return {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		"nvim-treesitter/nvim-treesitter-context",
 		"nvim-treesitter/nvim-treesitter-refactor",
-		"p00f/nvim-ts-rainbow",
+		-- "p00f/nvim-ts-rainbow",
 		-- "nvim-treesitter/playground",
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		"andymass/vim-matchup",
@@ -61,12 +61,12 @@ return {
 				highlight_current_scope = { enable = false }
 			},
 
-			rainbow = {
-				enable = true,
-				-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-				extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-				max_file_lines = nil, -- Do not enable for files with more than n lines, int
-			},
+			-- rainbow = {
+			-- 	enable = true,
+			-- 	-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+			-- 	extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+			-- 	max_file_lines = nil, -- Do not enable for files with more than n lines, int
+			-- },
 
 			matchup = {
 				enable = true, -- mandatory, false will disable the whole extension

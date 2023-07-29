@@ -61,9 +61,9 @@ return {
 						{ "mode", separator = { right = "" } },
 					},
 					lualine_b = {
-						{"branch", separator = { right = "" } },
-						{"diff", separator = { right = "" } },
-						{"diagnostics", separator = { right = "" } },
+						{ "branch", separator = { right = "" } },
+						{ "diff", separator = { right = "" } },
+						{ "diagnostics", separator = { right = "" } },
 					},
 					lualine_c = {
 						{
@@ -71,7 +71,7 @@ return {
 							separator = { right = "" },
 							file_status = true, -- Displays file status (readonly status, modified status)
 							newfile_status = false, -- Display new file status (new file means no write after created)
-							path = 1, -- 0: Just the filename
+							path = 1,        -- 0: Just the filename
 							-- 1: Relative path
 							-- 2: Absolute path
 							-- 3: Absolute path, with tilde as the home directory
@@ -92,7 +92,7 @@ return {
 							color = { fg = "#008080", gui = "bold" },
 							separator = { right = "" },
 						},
-					  {
+						{
 							-- require("noice").api.statusline.mode.get,
 							-- cond = require("noice").api.statusline.mode.has,
 							-- color = { fg = "#ff9e64" },
@@ -103,12 +103,12 @@ return {
 						}
 					},
 					lualine_x = {
-						{"fileformat", separator = { left = "" } },
-						{"encoding", separator = { left = "" } },
-						{"filetype", separator = { left = "" } },
+						{ "fileformat", separator = { left = "" } },
+						{ "encoding", separator = { left = "" } },
+						{ "filetype", separator = { left = "" } },
 					},
-					lualine_y = {{"progress", separator = { left = "" } }},
-					lualine_z = {{"location", separator = { left = "" } }}
+					lualine_y = { { "progress", separator = { left = "" } } },
+					lualine_z = { { "location", separator = { left = "" } } }
 				}
 			}
 		end
@@ -123,8 +123,8 @@ return {
 			"nvim-tree/nvim-web-devicons"
 		},
 		keys = {
-			{ "R", ":BufferLineCycleNext<CR>", silent=true},
-			{ "E", ":BufferLineCyclePrev<CR>", silent=true},
+			{ "R", ":BufferLineCycleNext<CR>", silent = true },
+			{ "E", ":BufferLineCyclePrev<CR>", silent = true },
 		},
 		config = function()
 			require("bufferline").setup {
@@ -154,7 +154,8 @@ return {
 							highlight = "Directory",
 							separator = false
 						}
-					}},
+					}
+				},
 			}
 		end
 
@@ -183,17 +184,29 @@ return {
 			"rcarriga/nvim-notify",
 		},
 		keys = {
-			{"<a-j>", function()
-				if not require("noice.lsp").scroll(4) then
-					return "<a-j>"
-				end
-			end, mode = {"n", "i", "s"},silent = true, expr = true},
+			{
+				"<a-j>",
+				function()
+					if not require("noice.lsp").scroll(4) then
+						return "<a-j>"
+					end
+				end,
+				mode = { "n", "i", "s" },
+				silent = true,
+				expr = true
+			},
 
-			{"<a-k>", function()
-				if not require("noice.lsp").scroll(-4) then
-					return "<a-k>"
-				end
-			end, mode = {"n", "i", "s"},silent = true, expr = true},
+			{
+				"<a-k>",
+				function()
+					if not require("noice.lsp").scroll(-4) then
+						return "<a-k>"
+					end
+				end,
+				mode = { "n", "i", "s" },
+				silent = true,
+				expr = true
+			},
 		},
 		config = function()
 			require("noice").setup({
@@ -205,7 +218,7 @@ return {
 				-- 	},
 				-- },
 				views = {
-				  cmdline_popup = {
+					cmdline_popup = {
 						border = {
 							style = "none",
 							padding = { 2, 3 },
@@ -268,8 +281,6 @@ return {
 					bottom_search = true,
 				}
 			})
-
-
 		end,
 	},
 
@@ -280,7 +291,7 @@ return {
 			"nvim-tree/nvim-web-devicons"
 		},
 		priority = 500,
-		config = function ()
+		config = function()
 			local alpha = require("alpha")
 			local dashboard = require("alpha.themes.dashboard")
 
@@ -320,7 +331,7 @@ return {
 				dashboard.button("o", "  > Recent", ":FzfLua oldfiles<CR>"),
 				dashboard.button("s", "  > Session", ":lua require('nvim-possession').list()<CR>"),
 				dashboard.button("u", "全 > PluginUpdate", ":Lazy sync<CR>"),
-				dashboard.button("ns","  > Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+				dashboard.button("ns", "  > Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
 				dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
 			}
 			dashboard.section.footer.val = footer()
@@ -348,7 +359,7 @@ return {
 			"nvim-tree/nvim-web-devicons", -- optional dependency
 		},
 
-		config = function ()
+		config = function()
 			require("barbecue").setup({
 				create_autocmd = false, -- prevent barbecue from updating itself automatically
 			})
