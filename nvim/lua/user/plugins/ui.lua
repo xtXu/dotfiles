@@ -54,6 +54,7 @@ return {
 					"toggleterm",
 					"man",
 					"fzf",
+					"neo-tree",
 				},
 
 				sections = {
