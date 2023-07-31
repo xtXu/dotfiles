@@ -1,148 +1,94 @@
 return {
 
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
-		cmd = "Neotree",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-		},
-		keys = {
-			-- {
-			-- 	"<leader>fe",
-			-- 	function()
-			-- 		require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
-			-- 	end,
-			-- 	desc = "Explorer NeoTree (root dir)",
-			-- },
-			{
-				"tt",
-				function()
-					require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-				end,
-				desc = "Explorer NeoTree (cwd)",
-			},
-		},
-		deactivate = function()
-			vim.cmd([[Neotree close]])
-		end,
-		init = function()
-			if vim.fn.argc() == 1 then
-				local stat = vim.loop.fs_stat(vim.fn.argv(0))
-				if stat and stat.type == "directory" then
-					require("neo-tree")
-				end
-			end
-		end,
-		opts = {
-			sources = { "filesystem", "buffers", "git_status", "document_symbols" },
-			open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "Outline" },
-			filesystem = {
-				bind_to_cwd = false,
-				follow_current_file = { enabled = true },
-				use_libuv_file_watcher = true,
-			},
-			window = {
-				width = 30,
-				mappings = {
-					["<space>"] = "none",
-					["t"] = "none",
-					["o"] = "open",
-				},
-			},
-			default_component_configs = {
-				indent = {
-					with_markers = false,
-				},
-			},
-		},
-		config = function(_, opts)
-			require("neo-tree").setup(opts)
-			vim.api.nvim_create_autocmd("TermClose", {
-				pattern = "*lazygit",
-				callback = function()
-					if package.loaded["neo-tree.sources.git_status"] then
-						require("neo-tree.sources.git_status").refresh()
-					end
-				end,
-			})
-		end,
-	},
-
 	-- NvimTree
-	-- {
-	-- 	"nvim-tree/nvim-tree.lua",
-	-- 	dependencies = {
-	-- 		"nvim-tree/nvim-web-devicons"
-	-- 	},
-	-- 	lazy = false,
-	-- 	keys = {
-	-- 		{ "tt", "<Cmd>NvimTreeFindFileToggle<CR>" },
-	-- 	},
-	-- 	-- highlights = require("catppuccin.groups.integrations.bufferline").get(),
-	-- 	-- event = "VeryLazy",
-	-- 	config = function()
-	-- 		require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
-	-- 			-- ignore_ft_on_setup = {"alpha"},
-	-- 			diagnostics = {
-	-- 				enable = true,
-	-- 				show_on_dirs = false,
-	-- 				debounce_delay = 50,
-	-- 				icons = {
-	-- 					hint = "",
-	-- 					info = "",
-	-- 					warning = "",
-	-- 					error = "",
-	-- 				},
-	-- 			},
-	--
-	-- 			renderer = {
-	-- 				group_empty = true,
-	-- 				highlight_opened_files = "name",
-	-- 			},
-	--
-	-- 			update_focused_file = {
-	-- 				enable = true,
-	-- 			}
-	--
-	-- 		} -- END_DEFAULT_OPTS
-	--
-	-- 		-- open on setup
-	-- 		local function open_nvim_tree(data)
-	-- 			-- buffer is a [No Name]
-	-- 			local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
-	--
-	-- 			-- buffer is a directory
-	-- 			local directory = vim.fn.isdirectory(data.file) == 1
-	--
-	-- 			-- if not no_name and not directory then
-	-- 			-- 	return
-	-- 			-- end
-	-- 			if not directory then
-	-- 				return
-	-- 			end
-	--
-	-- 			-- change to the directory
-	-- 			if directory then
-	-- 				vim.cmd.cd(data.file)
-	-- 			end
-	--
-	-- 			-- open the tree
-	-- 			require("nvim-tree.api").tree.open()
-	-- 		end
-	--
-	-- 		vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-	-- 	end,
-	--
-	-- 	init = function()
-	-- 		-- nvim-tree required
-	-- 		vim.g.loaded = 1
-	-- 		vim.g.loaded_netrwPlugin = 1
-	-- 	end
-	--
-	-- },
+	{
+		"nvim-tree/nvim-tree.lua",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons"
+		},
+		lazy = false,
+		keys = {
+			{ "tt", "<Cmd>NvimTreeFindFileToggle<CR>" },
+		},
+		-- highlights = require("catppuccin.groups.integrations.bufferline").get(),
+		-- event = "VeryLazy",
+		config = function()
+
+			local function my_on_attach(bufnr)
+				local api = require "nvim-tree.api"
+
+				local function opts(desc)
+					return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+				end
+
+				-- default mappings
+				api.config.mappings.default_on_attach(bufnr)
+
+				-- custom mappings
+				vim.keymap.set('n', 's', api.node.open.vertical, opts('Open: Vertical Split'))
+				vim.keymap.set('n', 'S', api.node.open.horizontal, opts('Open: Horizontal Split'))
+			end
+
+			require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
+				-- ignore_ft_on_setup = {"alpha"},
+				on_attach = my_on_attach,
+				diagnostics = {
+					enable = true,
+					show_on_dirs = false,
+					debounce_delay = 50,
+					icons = {
+						hint = "",
+						info = "",
+						warning = "",
+						error = "",
+					},
+				},
+
+				renderer = {
+					group_empty = true,
+					highlight_opened_files = "name",
+				},
+
+				update_focused_file = {
+					enable = true,
+				}
+
+			} -- END_DEFAULT_OPTS
+
+			-- open on setup
+			local function open_nvim_tree(data)
+				-- buffer is a [No Name]
+				local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+				-- buffer is a directory
+				local directory = vim.fn.isdirectory(data.file) == 1
+
+				-- if not no_name and not directory then
+				-- 	return
+				-- end
+				if not directory then
+					return
+				end
+
+				-- change to the directory
+				if directory then
+					vim.cmd.cd(data.file)
+				end
+
+				-- open the tree
+				require("nvim-tree.api").tree.open()
+			end
+
+			vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+		end,
+
+		init = function()
+			-- nvim-tree required
+			vim.g.loaded = 1
+			vim.g.loaded_netrwPlugin = 1
+		end
+
+	},
 
 	-- fzf-lua
 	{
@@ -359,16 +305,16 @@ return {
 					view = {
 						-- The `view` bindings are active in the diff buffers, only when the current
 						-- tabpage is a Diffview.
-						["<tab>"]      = actions.select_next_entry, -- Open the diff for the next file
-						["<s-tab>"]    = actions.select_prev_entry, -- Open the diff for the previous file
-						["gf"]         = actions.goto_file, -- Open the file in a new split in the previous tabpage
-						["<C-w><C-f>"] = actions.goto_file_split, -- Open the file in a new split
-						["<C-w>gf"]    = actions.goto_file_tab, -- Open the file in a new tabpage
-						["<leader>e"]  = actions.focus_files, -- Bring focus to the file panel
-						["<leader>b"]  = actions.toggle_files, -- Toggle the file panel.
-						["g<C-x>"]     = actions.cycle_layout, -- Cycle through available layouts.
-						["[x"]         = actions.prev_conflict, -- In the merge_tool: jump to the previous conflict
-						["]x"]         = actions.next_conflict, -- In the merge_tool: jump to the next conflict
+						["<tab>"]      = actions.select_next_entry,   -- Open the diff for the next file
+						["<s-tab>"]    = actions.select_prev_entry,   -- Open the diff for the previous file
+						["gf"]         = actions.goto_file,           -- Open the file in a new split in the previous tabpage
+						["<C-w><C-f>"] = actions.goto_file_split,     -- Open the file in a new split
+						["<C-w>gf"]    = actions.goto_file_tab,       -- Open the file in a new tabpage
+						["<leader>e"]  = actions.focus_files,         -- Bring focus to the file panel
+						["<leader>b"]  = actions.toggle_files,        -- Toggle the file panel.
+						["g<C-x>"]     = actions.cycle_layout,        -- Cycle through available layouts.
+						["[x"]         = actions.prev_conflict,       -- In the merge_tool: jump to the previous conflict
+						["]x"]         = actions.next_conflict,       -- In the merge_tool: jump to the next conflict
 						["<leader>co"] = actions.conflict_choose("ours"), -- Choose the OURS version of a conflict
 						["<leader>ct"] = actions.conflict_choose("theirs"), -- Choose the THEIRS version of a conflict
 						["<leader>cb"] = actions.conflict_choose("base"), -- Choose the BASE version of a conflict
@@ -397,11 +343,11 @@ return {
 						["o"]             = actions.select_entry,
 						["<2-LeftMouse>"] = actions.select_entry,
 						["-"]             = actions.toggle_stage_entry, -- Stage / unstage the selected entry.
-						["S"]             = actions.stage_all, -- Stage all entries.
-						["U"]             = actions.unstage_all, -- Unstage all entries.
+						["S"]             = actions.stage_all,     -- Stage all entries.
+						["U"]             = actions.unstage_all,   -- Unstage all entries.
 						["X"]             = actions.restore_entry, -- Restore entry to the state on the left side.
 						["L"]             = actions.open_commit_log, -- Open the commit log panel.
-						["<c-b>"]         = actions.scroll_view( -0.25), -- Scroll the view up
+						["<c-b>"]         = actions.scroll_view(-0.25), -- Scroll the view up
 						["<c-f>"]         = actions.scroll_view(0.25), -- Scroll the view down
 						["<tab>"]         = actions.select_next_entry,
 						["<s-tab>"]       = actions.select_prev_entry,
@@ -418,9 +364,9 @@ return {
 						["]x"]            = actions.next_conflict,
 					},
 					file_history_panel = {
-						["g!"]            = actions.options, -- Open the option panel
+						["g!"]            = actions.options,    -- Open the option panel
 						["<C-A-d>"]       = actions.open_in_diffview, -- Open the entry under the cursor in a diffview
-						["y"]             = actions.copy_hash, -- Copy the commit hash of the entry under the cursor
+						["y"]             = actions.copy_hash,  -- Copy the commit hash of the entry under the cursor
 						["L"]             = actions.open_commit_log,
 						["zR"]            = actions.open_all_folds,
 						["zM"]            = actions.close_all_folds,
@@ -431,7 +377,7 @@ return {
 						["<cr>"]          = actions.select_entry,
 						["o"]             = actions.select_entry,
 						["<2-LeftMouse>"] = actions.select_entry,
-						["<c-b>"]         = actions.scroll_view( -0.25),
+						["<c-b>"]         = actions.scroll_view(-0.25),
 						["<c-f>"]         = actions.scroll_view(0.25),
 						["<tab>"]         = actions.select_next_entry,
 						["<s-tab>"]       = actions.select_prev_entry,
@@ -471,9 +417,9 @@ return {
 				-- or leave it empty to use the default settings
 				-- refer to the configuration section below
 				height = 20,
-				action_keys = { -- key mappings for actions in the trouble list
+				action_keys = {                -- key mappings for actions in the trouble list
 					jump_close = { "<cr>", "<tab>" }, -- jump to the diagnostic or open / close folds
-					jump = { "o" }, -- jump to the diagnostic and close the list
+					jump = { "o" },              -- jump to the diagnostic and close the list
 				},
 			}
 			-- setting in lsp
