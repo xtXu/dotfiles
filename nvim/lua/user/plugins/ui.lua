@@ -61,8 +61,8 @@ return {
 						{ "mode", separator = { right = "" } },
 					},
 					lualine_b = {
-						{ "branch", separator = { right = "" } },
-						{ "diff", separator = { right = "" } },
+						{ "branch",      separator = { right = "" } },
+						{ "diff",        separator = { right = "" } },
 						{ "diagnostics", separator = { right = "" } },
 					},
 					lualine_c = {
@@ -71,7 +71,7 @@ return {
 							separator = { right = "" },
 							file_status = true, -- Displays file status (readonly status, modified status)
 							newfile_status = false, -- Display new file status (new file means no write after created)
-							path = 1,        -- 0: Just the filename
+							path = 1, -- 0: Just the filename
 							-- 1: Relative path
 							-- 2: Absolute path
 							-- 3: Absolute path, with tilde as the home directory
@@ -104,8 +104,8 @@ return {
 					},
 					lualine_x = {
 						{ "fileformat", separator = { left = "" } },
-						{ "encoding", separator = { left = "" } },
-						{ "filetype", separator = { left = "" } },
+						{ "encoding",   separator = { left = "" } },
+						{ "filetype",   separator = { left = "" } },
 					},
 					lualine_y = { { "progress", separator = { left = "" } } },
 					lualine_z = { { "location", separator = { left = "" } } }
@@ -162,16 +162,43 @@ return {
 	},
 
 	-- indent-blankline
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	event = { "BufReadPre", "BufNewFile" },
+	-- 	config = function()
+	-- 		require("indent_blankline").setup {
+	-- 			enabled = true,
+	-- 			colored_indent_levels = false,
+	-- 			show_current_context = true,
+	-- 			show_current_context_start = true,
+	-- 		}
+	-- 	end
+	-- },
+
+	-- hlchunk
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		"shellRaining/hlchunk.nvim",
+		event = { "UIEnter" },
 		config = function()
-			require("indent_blankline").setup {
-				enabled = true,
-				colored_indent_levels = false,
-				show_current_context = true,
-				show_current_context_start = true,
-			}
+			require("hlchunk").setup({
+				chunk = {
+					enable = true,
+					use_treesitter = true,
+					style = {
+						{ fg = "#806d9c" },
+					},
+				},
+				indent = {
+					chars = { "│", "¦", "┆", "┊", },
+					use_treesitter = false,
+				},
+				blank = {
+					enable = false,
+				},
+				line_num = {
+					use_treesitter = true,
+				},
+			})
 		end
 	},
 
@@ -199,7 +226,7 @@ return {
 			{
 				"<a-k>",
 				function()
-					if not require("noice.lsp").scroll(-4) then
+					if not require("noice.lsp").scroll( -4) then
 						return "<a-k>"
 					end
 				end,
@@ -237,7 +264,6 @@ return {
 				messages = {
 					view = "mini",
 				},
-
 				lsp = {
 					override = {
 						-- override the default lsp markdown formatter with Noice
@@ -383,5 +409,34 @@ return {
 		end
 	},
 
+	-- rainbow delimiters
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+		event = "VeryLazy",
+		config = function()
+			-- This module contains a number of default definitions
+			local rainbow_delimiters = require 'rainbow-delimiters'
+
+			vim.g.rainbow_delimiters = {
+				strategy = {
+					[''] = rainbow_delimiters.strategy['global'],
+					vim = rainbow_delimiters.strategy['local'],
+				},
+				query = {
+					[''] = 'rainbow-delimiters',
+					lua = 'rainbow-blocks',
+				},
+				highlight = {
+					-- 'RainbowDelimiterRed',
+					'RainbowDelimiterYellow',
+					'RainbowDelimiterBlue',
+					'RainbowDelimiterOrange',
+					'RainbowDelimiterGreen',
+					'RainbowDelimiterViolet',
+					'RainbowDelimiterCyan',
+				},
+			}
+		end
+	}
 
 }
