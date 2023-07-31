@@ -9,7 +9,7 @@ return {
 		-- "p00f/nvim-ts-rainbow",
 		-- "nvim-treesitter/playground",
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		"andymass/vim-matchup",
+		-- "andymass/vim-matchup",
 	},
 
 	config = function() 
@@ -68,9 +68,9 @@ return {
 			-- 	max_file_lines = nil, -- Do not enable for files with more than n lines, int
 			-- },
 
-			matchup = {
-				enable = true, -- mandatory, false will disable the whole extension
-			},
+			-- matchup = {
+			-- 	enable = true, -- mandatory, false will disable the whole extension
+			-- },
 
 			textobjects = {
 				select = {
