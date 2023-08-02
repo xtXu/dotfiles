@@ -151,6 +151,11 @@ return {
 					rainbow = {
 						enabled = true,
 					}
+				},
+				modes = {
+					search = {
+						enabled = false,
+					}
 				}
 			}
 		end
