@@ -110,73 +110,12 @@ if [ -f ~/.fzf.zsh ]; then
 fi
 # ============================================================
 
-# ======================= conda ===============================
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/xxt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/xxt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/xxt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/xxt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-# ============================================================
-
-
 setopt no_share_history
 
 # aliases
 alias c="xclip -selection clipboard" # {cmd} | c to redirect the output to the system clipboard
 alias lg="lazygit"
 
-
-# proxy
-# export http_proxy="http://127.0.0.1:7890"
-# export https_proxy="http://127.0.0.1:7890"
-
-# ROS
-source /opt/ros/melodic/setup.zsh
-
-
-# cuda
-export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-
-# Path
-export PATH=$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$PATH
-
 # starship
 eval "$(starship init zsh)"
-
-# ================================= PIXHAWK4 ==========================================
-
-# 1.13.3
-# source ~/PX4-1_13_3/Tools/setup_gazebo.bash ~/PX4-1_13_3 ~/PX4-1_13_3/build/px4_sitl_default
-# export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-1_13_3
-# export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-1_13_3/Tools/sitl_gazebo
-
-# 1.11
-# source ~/realsense_gazebo_ws//devel/setup.zsh
-# source ~/PX4-Autopilot/Tools/setup_gazebo.bash ~/PX4-Autopilot ~/PX4-Autopilot/build/px4_sitl_default
-# export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Autopilot
-# export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Autopilot/Tools/sitl_gazebo
-
-# xtdrone
-source ~/xtdrone_ws/devel/setup.zsh
-source ~/PX4_Firmware/Tools/setup_gazebo.bash ~/PX4_Firmware/ ~/PX4_Firmware/build/px4_sitl_default
-export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4_Firmware
-export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4_Firmware/Tools/sitl_gazebo
-
-# source ~/px4_fastplanner_ws/devel/setup.zsh
-# source ~/PX4-Autopilot/Tools/setup_gazebo.bash ~/PX4-Autopilot ~/PX4-Autopilot/build/px4_sitl_default
-# export GAZEBO_MODEL_PATH=~/px4_fastplanner_ws/src/simulation/models
-# export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Autopilot
-# export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Autopilot/Tools/sitl_gazebo
-
-# ====================================================================================
 
