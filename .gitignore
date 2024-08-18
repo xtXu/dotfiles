@@ -43,5 +43,5 @@ luac.out
 *.log
 
 nvim/plugin/packer_compiled.lua
-lazy-lock.json
+# lazy-lock.json
 .DS_Store

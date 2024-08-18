@@ -1,0 +1,42 @@
+return {
+	-- fzf-lua
+	-- {
+	-- 	"ibhagwan/fzf-lua",
+	-- 	dependencies = {
+	-- 		"nvim-tree/nvim-web-devicons"
+	-- 	},
+	-- 	keys = {
+	-- 		{ "<leader>ff",
+	-- 			"<cmd>lua require('fzf-lua').files({cmd = 'fd --type f --exclude build --exclude logs --exclude devel'})<CR>" },
+	-- 		{ "<leader>fg",  "<cmd>lua require('fzf-lua').live_grep_native()<CR>" },
+	-- 		{ "<leader>fG",  "<cmd>lua require('fzf-lua').grep()<CR>" },
+	-- 		{ "<leader>fb",  "<cmd>lua require('fzf-lua').buffers()<CR>" },
+	-- 		{ "<leader>fh",  "<cmd>lua require('fzf-lua').help_tags()<CR>" },
+	-- 		{ "<leader>fo",  "<cmd>lua require('fzf-lua').oldfiles()<CR>" },
+	-- 		{ "<leader>fq",  "<cmd>lua require('fzf-lua').quickfix()<CR>" },
+	-- 		{ "<leader>fs",  "<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>" },
+	-- 		{ "<leader>fS",  "<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>" },
+	-- 		{ "<leader>fd",  "<cmd>lua require('fzf-lua').lsp_definitions()<CR>" },
+	-- 		{ "<leader>ftd", "<cmd>lua require('fzf-lua').lsp_typedefs()<CR>" },
+	-- 		{ "<leader>fr",  "<cmd>lua require('fzf-lua').lsp_references()<CR>" },
+	-- 		{ "<leader>fi",  "<cmd>lua require('fzf-lua').lsp_implementations()<CR>" },
+	-- 		{ "<leader>fe",  "<cmd>lua require('fzf-lua').diagnostics_document()<CR>" },
+	-- 		{ "<leader>fE",  "<cmd>lua require('fzf-lua').diagnostics_workspace()<CR>" },
+	-- 	},
+	-- 	config = function()
+	-- 		require("fzf-lua").setup({
+	-- 			files = {
+	-- 				fd_opts = "--color=never --type f --hidden --exclude .git",
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- 	init = function()
+	-- 		-- setting in lsp
+	-- 		-- keymap(bufnr, "n", "gd", "<cmd>lua require('fzf-lua').lsp_definitions({ jump_to_single_result = true })<CR>", opts)
+	-- 		-- keymap(bufnr, "n", "gr", "<cmd>lua require('fzf-lua').lsp_references({ jump_to_single_result = true })<CR>", opts)
+	-- 		-- keymap(bufnr, "n", "gD", "<cmd>lua require('fzf-lua').lsp_declarations()<CR>", opts)
+	-- 		-- keymap(bufnr, "n", "gi", "<cmd>lua require('fzf-lua').lsp_implementations()<CR>", opts)
+	-- 	end,
+	--
+	-- },
+}

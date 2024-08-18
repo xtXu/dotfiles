@@ -1,0 +1,24 @@
+return {
+	-- aerial
+	-- {
+	-- 	"stevearc/aerial.nvim",
+	-- 	-- event = { "BufReadPre", "BufNewFile" },
+	-- 	cmd = { "AerialToggle" },
+	-- 	keys = {
+	-- 		{ "<leader>a", "<cmd>AerialToggle<CR>" }
+	-- 	},
+	-- 	filter_kind = false,
+	-- 	highlight_on_hover = true,
+	-- 	config = function()
+	-- 		require("aerial").setup({
+	-- 			backends = { "lsp", "treesitter", "markdown", "man" },
+	-- 			-- optionally use on_attach to set keymaps when aerial has attached to a buffer
+	-- 			on_attach = function(bufnr)
+	-- 				-- Jump forwards/backwards with '{' and '}'
+	-- 				vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+	-- 				vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+	-- 			end
+	-- 		})
+	-- 	end,
+	-- },
+}

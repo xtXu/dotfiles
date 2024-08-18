@@ -112,7 +112,7 @@ fi
 # ============================================================
 
 
-export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+export PATH="/Users/xxt/.local/share/bob/nvim-bin:/opt/homebrew/opt/node@18/bin:$PATH"
 
 # starship
 eval "$(starship init zsh)"
@@ -132,3 +132,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
