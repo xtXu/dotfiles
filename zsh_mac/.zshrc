@@ -1,3 +1,8 @@
+# auto download zgenom
+if [[ ! -e "${HOME}/.zgenom" ]]; then
+    git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
+fi
+
 # load zgenom
 source "${HOME}/.zgenom/zgenom.zsh"
 

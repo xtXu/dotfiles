@@ -6,10 +6,8 @@ return {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		"nvim-treesitter/nvim-treesitter-context",
 		"nvim-treesitter/nvim-treesitter-refactor",
-		-- "p00f/nvim-ts-rainbow",
-		-- "nvim-treesitter/playground",
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		-- "andymass/vim-matchup",
+		"andymass/vim-matchup",
 	},
 
 	config = function() 
@@ -17,22 +15,13 @@ return {
 			-- A list of parser names, or "all"
 			ensure_installed = { "c", "cpp", "json", "cmake", "lua",
 													"vim", "regex", "bash", "markdown", "markdown_inline"},
-			-- Install parsers synchronously (only applied to `ensure_installed`)
-			sync_install = false,
-			-- Automatically install missing parsers when entering buffer
+			sync_install = true,
 			auto_install = true,
-
 			-- List of parsers to ignore installing (for "all")
 			ignore_install = { "ini" },
 
 			highlight = {
-				-- `false` will disable the whole extension
 				enable = true,
-
-				-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-				-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-				-- the name of the parser)
-				-- list of language that will be disabled
 				additional_vim_regex_highlighting = false,
 			},
 
@@ -46,12 +35,6 @@ return {
 				}
 			},
 
-			-- specific comment for embended filetype (eg. lua in vimsrcipt)
-			context_commentstring = {
-				enable = true,
-				enable_autocmd = false
-			},
-
 			refactor = {
 				highlight_definitions = {
 					enable = false,
@@ -61,16 +44,9 @@ return {
 				highlight_current_scope = { enable = false }
 			},
 
-			-- rainbow = {
-			-- 	enable = true,
-			-- 	-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-			-- 	extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-			-- 	max_file_lines = nil, -- Do not enable for files with more than n lines, int
-			-- },
-
-			-- matchup = {
-			-- 	enable = true, -- mandatory, false will disable the whole extension
-			-- },
+			matchup = {
+				enable = true,
+			},
 
 			textobjects = {
 				select = {
@@ -84,18 +60,11 @@ return {
 						["af"] = "@function.outer",
 						["if"] = "@function.inner",
 						["ac"] = "@class.outer",
-						-- you can optionally set descriptions to the mappings (used in the desc parameter of nvim_buf_set_keymap
 						["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
 						["ap"] = "@parameter.outer",
 						["ip"] = "@parameter.inner",
 					},
-					-- You can choose the select mode (default is charwise 'v')
-					--
-					-- Can also be a function which gets passed a table with the keys
-					-- * query_string: eg '@function.inner'
-					-- * method: eg 'v' or 'o'
-					-- and should return the mode ('v', 'V', or '<c-v>') or a table
-					-- mapping query_strings to modes.
+
 					selection_modes = {
 						['@parameter.outer'] = 'v', -- charwise
 						['@parameter.inner'] = 'v', -- charwise
@@ -104,15 +73,6 @@ return {
 						['@class.outer'] = '<c-v>', -- blockwise
 						['@class.inner'] = '<c-v>', -- blockwise
 					},
-					-- If you set this to `true` (default is `false`) then any textobject is
-					-- extended to include preceding xor succeeding whitespace. Succeeding
-					-- whitespace has priority in order to act similarly to eg the built-in
-					-- `ap`.
-					--
-					-- Can also be a function which gets passed a table with the keys
-					-- * query_string: eg '@function.inner'
-					-- * selection_mode: eg 'v'
-					-- and should return true of false
 					include_surrounding_whitespace = true,
 				},
 
@@ -127,14 +87,20 @@ return {
 			},
 		}
 
-		-- 开启 Folding
+		-- folding
 		vim.wo.foldmethod = 'expr'
 		vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-		-- 默认不要折叠
+		-- default no folding
 		vim.wo.foldlevel = 99
 
 		require("treesitter-context").setup {
-			enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+			enable = true, 
+			max_lines = 5,
+		}
+
+		vim.g.skip_ts_context_commentstring_module = true
+		require('ts_context_commentstring').setup {
+			enable_autocmd = false,
 		}
 	end
 }

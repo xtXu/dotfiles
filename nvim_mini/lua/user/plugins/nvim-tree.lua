@@ -1,6 +1,4 @@
 return {
-
-	-- NvimTree
 	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = {
@@ -10,8 +8,6 @@ return {
 		keys = {
 			{ "tt", "<Cmd>NvimTreeFindFileToggle<CR>" },
 		},
-		-- highlights = require("catppuccin.groups.integrations.bufferline").get(),
-		-- event = "VeryLazy",
 		config = function()
 
 			local function my_on_attach(bufnr)

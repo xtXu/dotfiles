@@ -1,42 +1,33 @@
 return {
 
-	-- theme material
+	-- theme one dark pro
+	-- {
+	-- 	"olimorris/onedarkpro.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000, -- Ensure it loads first
+	-- 	config = function ()
+	-- 		vim.cmd("colorscheme onedark")
+	-- 	end,
+	-- },
+
+	-- theme gruvbox material
 	{
-		"marko-cerovac/material.nvim",
-		name = "material",
-		-- enabled = false;
+		'f4z3r/gruvbox-material.nvim',
+		name = 'gruvbox-material',
+		lazy = false,
 		priority = 1000,
+		opts = {},
 		config = function ()
-			require('material').setup({
-
-				plugins = { -- Uncomment the plugins that you use to highlight them
-					-- Available plugins:
-					-- "dap",
-					-- "dashboard",
-					"gitsigns",
-					-- "hop",
-					"indent-blankline",
-					-- "lspsaga",
-					-- "mini",
-					-- "neogit",
-					-- "neorg",
-					"nvim-cmp",
-					-- "nvim-navic",
-					"nvim-tree",
-					"nvim-web-devicons",
-					-- "sneak",
-					-- "telescope",
-					"trouble",
-					-- "which-key",
-				},
-				lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
-
-			})
-			vim.cmd.colorscheme "material"
+				require('gruvbox-material').setup({
+					italics = false,             -- enable italics in general
+					contrast = "medium",        -- set contrast, can be any of "hard", "medium", "soft"
+					comments = {
+						italics = true,           -- enable italic comments
+					},
+					background = {
+						transparent = true,      -- set the background to transparent
+					},
+				})
 		end,
-		init = function ()
-			vim.g.material_style = "darker"
-		end
 	}
-
 }

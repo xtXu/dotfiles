@@ -1,54 +1,4 @@
 return {
-	-- Comment
-	{
-		"numToStr/Comment.nvim",
-		keys = {
-			"gcc", "gbc", "gco", "gcO", "gcA",
-			{ "gc", "gb", mode = "v" },
-		},
-		dependencies = {
-			"JoosepAlviste/nvim-ts-context-commentstring",
-		},
-		config = function()
-			require('Comment').setup {
-				pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-			}
-		end
-	},
-
-	-- surround
-	{
-		"kylechui/nvim-surround",
-		version = "*",
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
-		end
-	},
-
-
-	-- autopairs
-	{
-		"windwp/nvim-autopairs",
-		keys = {
-			{ "\"", mode = "i" },
-			{ "\'", mode = "i" },
-			{ "(",  mode = "i" },
-			{ "{",  mode = "i" },
-			{ "[",  mode = "i" },
-		},
-		config = function()
-			require("nvim-autopairs").setup {
-				enable_moveright = true,
-				check_ts = true
-			}
-		end
-	},
-
-
-	-- cmp
 	{
 		"hrsh7th/nvim-cmp",
 		-- event = "VeryLazy",
@@ -162,7 +112,4 @@ return {
 			})
 		end
 	},
-
-
-
 }
