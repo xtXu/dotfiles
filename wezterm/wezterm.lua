@@ -8,6 +8,7 @@ config.use_fancy_tab_bar = true
 config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.window_background_opacity = 0.95
+config.macos_window_background_blur = 20
 config.initial_cols = 125
 config.initial_rows = 40
 config.keys = {
