@@ -17,3 +17,11 @@ staged = '+${count}'
 renamed = '»${count}'
 deleted = '✘${count}'
 
+[container]
+disabled = true
+
+[custom.foo]
+command = 'echo $SHPOOL_SESSION_NAME' # shows output of command
+when = '[ -n "$SHPOOL_SESSION_NAME" ] && exit 0 || exit 1'
+style = 'bold blue'
+format = '[\[shpool: $output\]]($style)'
