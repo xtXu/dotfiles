@@ -16,18 +16,8 @@ if ! zgenom saved; then
 
     # Add this if you experience issues with missing completions or errors mentioning compdef.
     zgenom compdef
-
     # Ohmyzsh base library
     zgenom ohmyzsh
-
-    # You can also cherry pick just parts of the base library.
-    # Not loading the base set of ohmyzsh libraries might lead to issues.
-    # While you can do it, I won't recommend it unless you know how to fix
-    # those issues yourself.
-
-    # Remove `zgenom ohmyzsh` and load parts of ohmyzsh like this:
-    # `zgenom ohmyzsh path/to/file.zsh`
-    # zgenom ohmyzsh lib/git.zsh # load git library of ohmyzsh
 
     # plugins
     zgenom ohmyzsh plugins/git
@@ -47,46 +37,23 @@ if ! zgenom saved; then
     # Install ohmyzsh osx plugin if on macOS
     [[ "$(uname -s)" = Darwin ]] && zgenom ohmyzsh plugins/macos
 
-
     zgenom load zsh-users/zsh-syntax-highlighting
     zgenom load zsh-users/zsh-autosuggestions
     # completions
     zgenom load zsh-users/zsh-completions
-
-    # use a plugin file
-    # The file must only contain valid parameters for `zgenom load`
-    # zgenom loadall < path/to/plugin/file
-
-    # bulk load
-#     zgenom loadall <<EOPLUGINS
-#         zsh-users/zsh-history-substring-search
-#         /path/to/local/plugin
-# EOPLUGINS
-    # ^ can't indent this EOPLUGINS
-
-    # add binaries
-    # zgenom bin tj/git-extras
-
-
-    # theme
-    # zgenom ohmyzsh themes/arrow
+		zgenom load Aloxaf/fzf-tab
 
     # save all to init script
     zgenom save
 
     # Compile your zsh files
     zgenom compile "$HOME/.zshrc"
-    # Uncomment if you set ZDOTDIR manually
-    # zgenom compile $ZDOTDIR
-
-    # You can perform other "time consuming" maintenance tasks here as well.
-    # If you use `zgenom autoupdate` you're making sure it gets
-    # executed every 7 days.
-
-    # rbenv rehash
 fi
+# ============================================================
 
-setopt no_share_history
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
 
 # ======================= fzf ===============================
 if [ -f ~/.fzf.zsh ]; then
@@ -117,24 +84,61 @@ fi
 # ============================================================
 
 
-export PATH="/Users/xxt/.local/share/bob/nvim-bin:/opt/homebrew/opt/node@18/bin:$PATH"
+# generate .gitignore
+function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
+
+# shpool
+shpool_choose() {
+    if [ -z "$SHPOOL_SESSION_NAME" ]
+    then
+        cur_sess=""
+    else
+        cur_sess=" (current: '$SHPOOL_SESSION_NAME')"
+    fi
+    cmd_output=$(
+    shpool list | tail -n +2 | cut -f1 | fzf \
+        --bind 'k:reload-sync(shpool kill {} ; shpool list | tail -n +2 | cut -f1)' \
+        --bind 'x:reload-sync(shpool kill {} ; shpool list | tail -n +2 | cut -f1)' \
+        --bind 'a:execute(shpool attach --force {})' \
+        --bind 'ctrl-r:reload-sync(shpool list | tail -n +2 | cut -f1 )' \
+        --preview 'shpool list | tail -n +2 | sed -n "$(({n}+1))"p' \
+        --bind "change:reload(shpool list | tail -n +2 | cut -f1)" \
+        --reverse \
+        --height=~100% \
+        --preview-window down:wrap \
+        --header "Shpool sessions$cur_sess" \
+        --print-query \
+        --no-select-1 \
+        --no-exit-0
+    ) || return
+    # query is what is entered by the user, it's always present
+    query=$(echo "$cmd_output" | head -n 1)
+    # selection is the lines after query, that are only here if some sessions matched the que
+ry
+    selection=$(echo "$cmd_output" | tail -n +2)
+    if [ "$selection" ]
+    then
+        # notify-send "SEL $selection"
+        shpool attach --force $selection
+        return
+    else
+        # notify-send "NOSEL: $cmd_output"
+        shpool attach --force $query
+        return
+    fi
+
+}
+if ! command_exists shpool; then
+	bindkey -s "^s" 'shpool_choose\n'
+	bindkey -s "^ad" 'shpool detach\n'
+fi
+
+setopt no_share_history
+if [ -d "$HOME/.cargo/env" ]; then
+	source "$HOME/.cargo/env"
+fi
+export PATH="$HOME/cargo/bin/:$HOME/.local/bin:$HOME/.local/share/bob/nvim-bin:$PATH"
 
 # starship
 eval "$(starship init zsh)"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
