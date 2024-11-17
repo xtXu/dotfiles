@@ -13,8 +13,11 @@ config.initial_cols = 125
 config.initial_rows = 40
 config.keys = {
   { key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
+  { key = 'w', mods = 'CMD', action = wezterm.action.CloseCurrentTab { confirm = false },
+  },
 }
 config.window_close_confirmation = 'NeverPrompt'
 config.pane_focus_follows_mouse = true
+config.native_macos_fullscreen_mode = false
 
 return config
