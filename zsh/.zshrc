@@ -137,7 +137,7 @@ setopt no_share_history
 if [ -d "$HOME/.cargo/env" ]; then
 	source "$HOME/.cargo/env"
 fi
-export PATH="$HOME/cargo/bin/:$HOME/.local/bin:$HOME/.local/share/bob/nvim-bin:$PATH"
+export PATH="$HOME/.cargo/bin/:$HOME/.local/bin:$HOME/.local/share/bob/nvim-bin:$PATH"
 
 # starship
 eval "$(starship init zsh)"
