@@ -25,7 +25,7 @@ return {
 						italics = true,           -- enable italic comments
 					},
 					background = {
-						transparent = true,      -- set the background to transparent
+						transparent = false,      -- set the background to transparent
 					},
 				})
 		end,
