@@ -1,0 +1,11 @@
+theme = GruvboxDark
+font-family = Menlo
+font-size = 16
+background-opacity = 0.95
+background-blur-radius = 20
+unfocused-split-opacity = 0.85
+window-width = 115
+window-height = 40
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
