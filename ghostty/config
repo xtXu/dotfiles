@@ -9,3 +9,7 @@ window-height = 40
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
+confirm-close-surface = false
+window-padding-balance = true
+window-padding-x = 2
+window-padding-y = 2
