@@ -19,6 +19,7 @@ install_software() {
             echo "Homebrew not installed，installing..."
 						/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
+				echo "================================"
 
         # Install
         if ! command_exists starship; then
@@ -27,13 +28,18 @@ install_software() {
         else
             echo "Starship already installed"
         fi
+				echo "================================"
 
         if ! command_exists fd; then
             echo "Installing Fd..."
             brew install fd
+						if ! command_exists fd; then
+							ln -s $(which fdfind) ~/.local/bin/fd
+						fi
         else
             echo "Fd already installed"
         fi
+				echo "================================"
 
         if ! command_exists rg; then
             echo "Installing Ripgrep..."
@@ -41,6 +47,7 @@ install_software() {
         else
             echo "Ripgrep already installed"
         fi
+				echo "================================"
 
         if ! command_exists fzf; then
             echo "Installing Fzf..."
@@ -49,6 +56,7 @@ install_software() {
         else
             echo "Fzf already installed"
         fi
+				echo "================================"
 
         if ! command_exists bob; then
             echo "Installing bob..."
@@ -56,6 +64,7 @@ install_software() {
         else
             echo "Bob alreay installed"
         fi
+				echo "================================"
 
 				if ! command_exists nvim; then
             echo "Installing Neovim using bob..."
@@ -63,6 +72,7 @@ install_software() {
         else
             echo "Neovim alreay installed"
         fi
+				echo "================================"
 
 
     elif [[ "$OS" == "Linux" ]]; then
@@ -70,6 +80,7 @@ install_software() {
 
         echo "Updating apt..."
         sudo apt update -y
+				echo "================================"
 
         # Install
         if ! command_exists starship; then
@@ -78,6 +89,7 @@ install_software() {
         else
             echo "Starship already installed"
         fi
+				echo "================================"
 
         if ! command_exists fzf; then
             echo "Installing Fzf..."
@@ -86,14 +98,18 @@ install_software() {
         else
             echo "Fzf already installed"
         fi
+				echo "================================"
 
         if ! command_exists fdfind; then
             echo "Installing Fd..."
             sudo apt install -y fd-find
-						ln -s $(which fdfind) ~/.local/bin/fd
+						if ! command_exists fd; then
+							ln -s $(which fdfind) ~/.local/bin/fd
+						fi
         else
             echo "Fd already installed"
         fi
+				echo "================================"
 
         if ! command_exists rg; then
             echo "Installing Ripgrep..."
@@ -101,6 +117,7 @@ install_software() {
         else
             echo "Ripgrep already installed"
         fi
+				echo "================================"
 
 				if ! command_exists cargo; then
 						echo "Installing Rust..."
@@ -109,6 +126,7 @@ install_software() {
 				else
 						echo "Rust already installed"
 				fi
+				echo "================================"
 
         if ! command_exists bob; then
             echo "Installing bob..."
@@ -116,6 +134,7 @@ install_software() {
         else
             echo "Bob alreay installed"
         fi
+				echo "================================"
 
 				if ! command_exists nvim; then
             echo "Installing Neovim using bob..."
@@ -123,6 +142,7 @@ install_software() {
         else
             echo "Neovim alreay installed"
         fi
+				echo "================================"
 
 				if ! command_exists shpool; then
             echo "Installing Shpool..."
@@ -130,6 +150,7 @@ install_software() {
         else
             echo "Shpool alreay installed"
         fi
+				echo "================================"
 
 
     else
