@@ -92,9 +92,11 @@ install_software() {
 				echo "================================"
 
         if ! command_exists fzf; then
+					if [ ! -e "~/.fzf" ]; then
             echo "Installing Fzf..."
 						git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 						~/.fzf/install
+					fi
         else
             echo "Fzf already installed"
         fi
@@ -104,7 +106,9 @@ install_software() {
             echo "Installing Fd..."
             sudo apt install -y fd-find
 						if ! command_exists fd; then
-							ln -s $(which fdfind) ~/.local/bin/fd
+							if [ ! -e "~/.local/bin/fd" ]; then
+								ln -s $(which fdfind) ~/.local/bin/fd
+							fi
 						fi
         else
             echo "Fd already installed"
